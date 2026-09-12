@@ -90,7 +90,8 @@ small{font-size:var(--fs-small)}
     radial-gradient(circle at 10px 0, transparent 5px, var(--paper-2) 5.5px) 0 0/20px 22px repeat-x;
 }
 .counts{display:flex;gap:0;margin:0 0 34px;border:2px solid var(--ink);border-top:none}
-.counts div{flex:1;padding:10px 8px;text-align:center;border-right:1px solid var(--rule);background:var(--paper-2)}
+.counts div{flex:1;min-width:0;padding:10px 4px;text-align:center;border-right:1px solid var(--rule);background:var(--paper-2)}
+.counts span{display:block;overflow-wrap:anywhere}
 .counts div:last-child{border-right:none}
 .counts b{display:block;font-family:var(--disp);font-size:24px;font-weight:700;line-height:1}
 .counts span{font-size:var(--fs-small);color:var(--ink-soft)}
@@ -141,6 +142,31 @@ details[open]{padding-bottom:10px}
 .deliver ul{font-size:var(--fs-small);margin-bottom:10px}
 .tools{font-size:var(--fs-small);color:var(--ink-soft);margin:0}
 
+/* ---------- passo a passo ---------- */
+details.steps{counter-reset:pp}
+details.steps > summary{color:var(--pen)}
+.prog{font-family:var(--mono);font-size:15px;font-weight:400;color:var(--ink-soft);margin-left:auto;padding-right:10px;white-space:nowrap}
+.sess-h{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--ink);background:var(--bar);
+  border:1.5px solid var(--ink);padding:5px 9px;display:inline-block;margin:10px 0 12px}
+ol.pp{list-style:none;padding-left:0;margin:0 0 6px}
+ol.pp > li{counter-increment:pp;position:relative;padding-left:58px;margin-bottom:14px;min-height:28px}
+ol.pp > li::before{content:counter(pp);position:absolute;left:0;top:1px;width:26px;height:26px;
+  border:1.5px solid var(--ink);background:#fff;font-family:var(--mono);font-weight:700;font-size:15px;
+  display:flex;align-items:center;justify-content:center}
+ol.pp > li.done{color:var(--ink-soft)}
+ol.pp > li.done::before{background:var(--ink);color:var(--paper-2)}
+input.ck{position:absolute;left:32px;top:5px;width:19px;height:19px;margin:0;accent-color:var(--pen);cursor:pointer}
+.who{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--paper-2);background:var(--ink);
+  padding:2px 6px;margin-right:7px;white-space:nowrap;max-width:100%}
+.t{font-family:var(--mono);font-size:14px;color:var(--stamp);margin-right:7px;white-space:nowrap}
+.pp b{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--pen);background:#fff;
+  border:1px solid var(--rule);padding:0 4px;overflow-wrap:anywhere;word-break:break-word}
+ol.pp > li{overflow-wrap:break-word}
+.pp-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+.pp-bar button{font-family:var(--disp);font-weight:600;font-size:15px;background:var(--paper-2);
+  color:var(--ink);border:1.5px solid var(--ink);padding:6px 10px;cursor:pointer}
+.pp-bar button:hover{background:var(--bar)}
+
 /* ---------- tabelas tipo documento ---------- */
 .tbl-wrap{overflow-x:auto;margin:0 0 16px;border:1.5px solid var(--ink);background:#fff}
 table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:var(--fs-small);min-width:380px}
@@ -181,6 +207,10 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
   details{display:block}
   details > *:not(summary){display:block !important}
   summary::after{content:""}
+  .prog,.pp-bar{display:none}
+  ol.pp > li{break-inside:avoid}
+  input.ck{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sess-h,.who{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .doc,.ticket,.period-head,.kit-sec{break-inside:avoid;background:#fff}
 }
 </style>
@@ -213,6 +243,7 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
     <div><b>99</b><span>horas</span></div>
     <div><b>33</b><span>semanas</span></div>
     <div><b>16</b><span>entregas</span></div>
+    <div><b>216</b><span>passos</span></div>
   </div>
 
   <section class="block">
@@ -239,6 +270,10 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
     </div>
     <div class="note" style="margin-top:16px">
       <p><strong>Equipas de três:</strong> o Gestor acumula o papel Administrativo, mas o dossiê de documentos é verificado pelos três em conjunto na última aula de cada mês. Nenhuma equipa entrega contabilidade feita por uma pessoa só.</p>
+    </div>
+    <div class="note">
+      <p><strong>Onde está o passo a passo:</strong> dentro de cada bloco de semanas há duas gavetas. <em>Conteúdos e passos da aula</em> diz a matéria; <em>Passo a passo, aula a aula</em> diz o trabalho, passo a passo numerado, com quem faz e quantos minutos leva. São 216 passos repartidos por 33 aulas de 180 minutos. Marca cada passo à medida que o fechas: o computador guarda as marcas e, na aula seguinte, sabes onde ficaste.</p>
+      <p>Os minutos são uma indicação de ritmo, não um cronómetro. Se um passo demorar o dobro, o problema aparece logo ali e não três semanas depois, quando já não há tempo de o resolver.</p>
     </div>
     <div class="note warn">
       <p><strong>Rotina de dez minutos, todas as aulas:</strong> no fim da sessão, o Gestor escreve três linhas no diário de bordo (o que se fez, o que ficou por fazer, quem faz a seguir) e o Administrativo etiqueta os documentos do dia com a classe de contas a que pertencem. São dez minutos que poupam o 3.º período inteiro.</p>
@@ -268,6 +303,32 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           <li>Contrato de equipa: o que acontece se alguém faltar à entrega, como se decide quando há empate.</li>
         </ul>
       </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 1 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">15 min</span>Formar a equipa de três ou quatro. Numa folha A4 escrever o número e o nome de cada elemento, a turma e a data. Entregar ao professor no fim da aula: é a partir desta folha que se marca a presença no projeto.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Cada pessoa escreve sozinha, sem falar com as outras, três avarias de informática que viu acontecer na vida real. Por cada uma: quem ficou prejudicado, quanto tempo esteve sem o equipamento e o que fez para resolver. Numa equipa de quatro ficam doze avarias em cima da mesa.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Ler as listas em voz alta e agrupar as avarias repetidas. O que aparece em duas listas diferentes é sinal de procura real; o que aparece uma vez só pode ser caso isolado.</li>
+          <li><span class="who">Gestor</span><span class="t">25 min</span>Escrever três hipóteses de nicho no molde exato: <i>Reparamos [o quê] para [quem] em [onde]</i>. Exemplo aceite: «Reparamos portáteis para escritórios até dez postos na zona de Alvalade.» Exemplo recusado: «Reparamos computadores em Lisboa», porque não diz para quem.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Passar cada hipótese por três perguntas e responder sim ou não por escrito: existem pelo menos vinte clientes deste tipo a quinze minutos da escola? Pagam mais de trinta euros para resolver o problema? Conseguimos fazer o trabalho com ferramentas que cabem numa bancada? Riscar as hipóteses que falharem duas respostas.</li>
+          <li><span class="who">Todos</span><span class="t">15 min</span>Votar no nicho vencedor. Se houver empate, decide o Gestor, e a razão da decisão fica escrita no diário de bordo com a data.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Chuva de nomes: cada pessoa escreve cinco nomes em cinco minutos, sem julgar nenhum. Numa equipa de quatro saem vinte nomes.</li>
+          <li><span class="who">Comercial</span><span class="t">25 min</span>Eliminar nomes por três regras, nesta ordem: tem mais de três palavras; não se consegue soletrar ao telefone à primeira; já existe empresa do ramo com esse nome. Ficam três finalistas.</li>
+          <li><span class="who">Administrativo</span><span class="t">15 min</span>Abrir o diário de bordo numa folha de cálculo, com quatro colunas: data, o que se fez, o que ficou por fazer, quem faz a seguir. Escrever as primeiras três linhas antes de sair da aula.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 2 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Comercial</span><span class="t">25 min</span>Verificar os três nomes finalistas em empresanahora.justica.gov.pt, na bolsa de firmas pré-aprovadas. Registar numa tabela, por nome: livre, ocupado ou duvidoso, com o endereço da página e a data da consulta.</li>
+          <li><span class="who">Comercial</span><span class="t">15 min</span>Pesquisar cada nome num motor de busca e num registador de domínios .pt. Se já existir empresa do mesmo ramo com esse nome, risca-se, mesmo que a bolsa de firmas o dê como livre.</li>
+          <li><span class="who">Todos</span><span class="t">15 min</span>Escolher o nome definitivo e escrever, em duas linhas, porque foram rejeitados os outros dois. Estas duas linhas fazem parte da entrega e são avaliadas.</li>
+          <li><span class="who">Gestor</span><span class="t">25 min</span>Preencher a tabela das quatro rotações: linhas com os quatro papéis, colunas com as semanas 1 a 12, 13 a 19, 20 a 26 e 27 a 33. Ninguém repete papel enquanto houver papel por ocupar. Numa equipa de três, a tabela diz em que rotação o Gestor acumula o papel Administrativo.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Escrever e assinar o contrato de equipa, com cinco cláusulas: o que acontece a quem falha uma entrega; o prazo interno, sempre um dia antes do prazo do professor; como se desempata uma decisão; quem guarda os ficheiros e em que pasta; quando se revê o contrato. Todos assinam, com data.</li>
+          <li><span class="who">Comercial</span><span class="t">35 min</span>Logótipo no Canva, com três restrições: uma cor sólida mais preto, sem fotografias, legível a dois centímetros de altura. Exportar em PNG com fundo transparente e guardar na pasta da empresa.</li>
+          <li><span class="who">Administrativo</span><span class="t">20 min</span>Escolher a morada da sede: rua, número, andar se houver, e código postal completo com os quatro dígitos finais, confirmado no site dos CTT. Uma morada real de Lisboa serve como exercício.</li>
+          <li><span class="who">Gestor</span><span class="t">15 min</span>Montar a Entrega 1 num único documento, com a primeira página a identificar empresa, sócios e papel de cada um nesta rotação. Gravar como EQUIPA_P1_E01_identidade.pdf.</li>
+        </ol>
+      </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 1</span><strong>Ficha de identidade da empresa</strong></div>
         <ul>
@@ -295,6 +356,28 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           <li>CAE, o código que diz ao Estado o que a empresa faz. Consulta obrigatória no SICAE, porque os códigos mudaram com a revisão 4, em vigor desde janeiro de 2025.</li>
           <li>Empresa na Hora: passos, documentos e custo. Balcão presencial 360 euros, online com pacto pré-aprovado 220 euros, 300 euros no caso de empresas de inovação tecnológica ou investigação. Verifica os valores no portal antes de os escreveres.</li>
         </ul>
+      </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 3 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">20 min</span>Ler em silêncio o quadro <i>Formas jurídicas, comparação rápida</i>, no Kit, no fim desta página. Cada pessoa escreve uma pergunta a que o quadro não responde.</li>
+          <li><span class="who">Administrativo</span><span class="t">30 min</span>Construir a tabela comparativa num documento: colunas ENI, Unipessoal Lda e Lda; linhas capital mínimo, responsabilidade, imposto, número de sócios e tipo de contabilidade exigida. Preencher as quinze células por palavras vossas, sem copiar frases inteiras.</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Responder por escrito a três casos de risco, um parágrafo por caso e por forma jurídica: um cliente perde a faturação toda e pede oito mil euros de indemnização; a empresa fecha a dever quatro mil euros a um fornecedor; um sócio quer sair ao fim de um ano. Em cada caso, dizer o que acontece ao património pessoal dos sócios.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Votar a forma jurídica e escrever a frase de decisão no molde: «Escolhemos [forma] porque o risco principal do nosso negócio é [risco] e esta forma protege [o quê].»</li>
+          <li><span class="who">Gestor</span><span class="t">35 min</span>Desenvolver essa frase em meia página, com referência a pelo menos dois dos três casos de risco do passo 3. Meia página sem nenhum dos casos citados não cumpre o pedido.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">40 min</span>Tabela do capital social: quanto entra cada sócio, em dinheiro ou em espécie (ferramenta, computador, viatura), o valor atribuído a cada bem e a percentagem de quota que daí resulta. A soma das percentagens tem de dar exatamente 100.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 4 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Aprovisionamento</span><span class="t">30 min</span>Abrir sicae.pt e pesquisar «reparação de computadores». Copiar o código e a designação tal como aparecem, sem reescrever nem abreviar. Guardar uma captura de ecrã com a data visível.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">25 min</span>Repetir a pesquisa para duas atividades secundárias, por exemplo comércio a retalho de computadores e consultoria em informática. Montar a tabela: código, designação, principal ou secundário.</li>
+          <li><span class="who">Gestor</span><span class="t">15 min</span>Decidir o CAE principal pela regra do dinheiro: é principal a atividade de onde se espera a maior parte da faturação. Escrever a razão numa linha, com a percentagem estimada.</li>
+          <li><span class="who">Administrativo</span><span class="t">30 min</span>Abrir empresanahora.justica.gov.pt e listar, por ordem, os passos da constituição e os documentos exigidos a cada sócio. Anotar o custo indicado no portal e a data da consulta.</li>
+          <li><span class="who">Administrativo</span><span class="t">20 min</span>Comparar as duas vias numa tabela de três colunas: balcão presencial e via online com pacto pré-aprovado, com custo, tempo até a empresa existir e limitações de cada uma.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">30 min</span>Somar o custo total da constituição: taxa da Empresa na Hora, certidão permanente, certificado de admissibilidade do RNPC se for necessário e registo dos livros. Total por fórmula, nunca somado de cabeça.</li>
+          <li><span class="who">Gestor</span><span class="t">30 min</span>Montar a Entrega 2 com as quatro peças: tabela comparativa, justificação de meia página, CAE com fonte e data, custo total. Gravar como EQUIPA_P1_E02_decisao-juridica.pdf.</li>
+        </ol>
       </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 2</span><strong>Decisão fundamentada da forma jurídica</strong></div>
@@ -324,6 +407,36 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           <li>Percurso de um cliente pela empresa, área a área, do primeiro contacto à fatura paga.</li>
         </ul>
       </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 5 &middot; 180 min &middot; o percurso do cliente</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">10 min</span>Ler em voz alta o caso de trabalho: terça-feira, dez da manhã, entra um cliente com um portátil de três anos que não liga. Diz que tem lá as fotografias todas e que precisa dele na sexta.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Em cartões, cada pessoa escreve um passo por cartão, desde o cliente entrar até o dinheiro estar na conta da empresa. Ninguém fala enquanto escreve, para não haver cópia de ideias.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Alinhar os cartões na mesa por ordem cronológica e juntar os repetidos. Devem sobrar entre oito e doze passos. Se sobrarem quatro, falta detalhe: onde está o diagnóstico, o orçamento, a aprovação do cliente e o teste final?</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Escrever numa etiqueta, ao lado de cada cartão, a área responsável: comercial, técnica, aprovisionamento, administrativa ou financeira. Um passo com duas áreas é sinal de que são dois passos.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Marcar a vermelho os pontos onde o processo pode parar: peça sem stock, cliente não aprova o orçamento, dados irrecuperáveis. Escrever ao lado de cada um o que a empresa faz a seguir.</li>
+          <li><span class="who">Gestor</span><span class="t">30 min</span>Reduzir o percurso a seis passos numerados no documento da entrega, cada um com a área responsável indicada.</li>
+          <li><span class="who">Administrativo</span><span class="t">30 min</span>Fotografar a mesa dos cartões e guardar a imagem como anexo da entrega. Escrever o diário de bordo da aula.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 6 &middot; 180 min &middot; desenhar o organograma</p>
+        <ol class="pp">
+          <li><span class="who">Administrativo</span><span class="t">15 min</span>Abrir diagrams.net, escolher <i>Blank Diagram</i> e gravar no Drive da equipa com o nome organograma-EQUIPA.</li>
+          <li><span class="who">Administrativo</span><span class="t">20 min</span>Desenhar a caixa de topo, Gerência, com os nomes dos sócios, e por baixo as cinco caixas das áreas funcionais.</li>
+          <li><span class="who">Todos</span><span class="t">45 min</span>Escrever dentro de cada caixa três tarefas começadas por verbo de ação: atender, orçamentar, faturar, diagnosticar, encomendar, conferir, arquivar, pagar. Tarefas vagas como «tratar do cliente» não contam e são devolvidas.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Ligar as caixas com dois tipos de seta: cheia para dependência hierárquica, tracejada para substituição em faltas e férias.</li>
+          <li><span class="who">Gestor</span><span class="t">30 min</span>Tabela de substituições com duas colunas, responsável e substituto, uma linha por área. Nenhuma área pode ficar sem substituto indicado.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>Confronto com a aula anterior: percorrer os seis passos do percurso do cliente e verificar que cada um corresponde a uma tarefa escrita dentro de uma caixa. O que faltar acrescenta-se agora.</li>
+        </ol>
+        <p class="sess-h">Aula 3 &middot; semana 7 &middot; 180 min &middot; papéis e teste</p>
+        <ol class="pp">
+          <li><span class="who">Gestor</span><span class="t">35 min</span>Tabela de cruzamento: linhas com as cinco áreas funcionais, colunas com as quatro rotações e, em cada célula, o nome de quem responde por aquela área nessa rotação.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>Teste do relógio: o professor lê cinco situações &mdash; toca o telefone, chega uma fatura do fornecedor, falta um SSD para uma reparação marcada, um cliente reclama da garantia, está por pagar a renda &mdash; e a equipa tem dez segundos para dizer quem trata. Anotar as falhas.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Corrigir o organograma onde o teste falhou. Uma falha é sempre uma de duas coisas: tarefa em falta dentro de uma caixa, ou linha de dependência mal desenhada.</li>
+          <li><span class="who">Administrativo</span><span class="t">30 min</span>Exportar o organograma em PDF e em PNG, com o título e a data no canto.</li>
+          <li><span class="who">Gestor</span><span class="t">45 min</span>Montar a Entrega 3 com as quatro peças: diagrama, três tarefas por área, mapa das áreas com os papéis e percurso do cliente em seis passos. Gravar como EQUIPA_P1_E03_organograma.pdf.</li>
+        </ol>
+      </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 3</span><strong>Organograma com funções descritas</strong></div>
         <ul>
@@ -349,6 +462,28 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           <li>Recolha de dados: site, telefone, visita, redes sociais.</li>
           <li>Posicionamento: mais barato, mais rápido ou mais especializado. Escolher um.</li>
         </ul>
+      </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 8 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">30 min</span>Escrever a missão no molde: «A [nome] [faz o quê] para [quem], de forma [como].» Máximo de 25 palavras. Escrever três versões e escolher uma por votação.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Escrever a visão a três anos, com um número lá dentro. «Em 2029 temos 40 contratos de manutenção ativos» vale. «Queremos ser os melhores da zona» não vale, porque não se pode verificar.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Escolher três valores e escrever, ao lado de cada um, a regra prática que o prova. Exemplo: «Transparência: nenhum orçamento sobe sem autorização escrita do cliente.»</li>
+          <li><span class="who">Comercial</span><span class="t">35 min</span>Ficha dos dois segmentos de cliente, com cinco campos preenchidos em cada: quem é, o que precisa, quanto está disposto a pagar, onde se encontra, quem decide a compra. Num escritório, quem usa o computador não é quem assina a fatura.</li>
+          <li><span class="who">Comercial</span><span class="t">35 min</span>Escrever o guião do telefonema aos concorrentes, com quatro perguntas e duração máxima de 90 segundos. A primeira frase é sempre a identificação: «Boa tarde, sou aluno da [escola] e estamos a fazer um trabalho escolar sobre preços de reparação. Posso fazer quatro perguntas rápidas?» Ligar sem se identificar não é permitido.</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Ensaiar o telefonema aos pares: um faz de loja e responde mal de propósito, o outro faz de aluno e tem de manter as perguntas. Trocar de papel e repetir.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 9 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Comercial</span><span class="t">20 min</span>Escolher três concorrentes reais no mapa, com a pesquisa «reparação de computadores» mais o nome da zona. Anotar nome, morada e endereço do site de cada um.</li>
+          <li><span class="who">Todos</span><span class="t">50 min</span>Recolher os cinco critérios: preço da mão de obra por hora, custo da deslocação, prazo de reparação, garantia dada e existência de contrato de manutenção. Primeiro procura-se no site; só se telefona para o que faltar.</li>
+          <li><span class="who">Administrativo</span><span class="t">20 min</span>Registar, por cada valor recolhido, a fonte (endereço da página ou a palavra telefone) e a data e hora da recolha. Um valor sem fonte não conta para a avaliação e é tratado como inventado.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">30 min</span>Passar tudo para uma folha de cálculo: linhas com os cinco critérios, colunas com os três concorrentes mais uma coluna «nós».</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">20 min</span>Calcular por fórmula a média do preço por hora dos três concorrentes e preencher a coluna «nós» com o vosso valor provisório.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Escrever duas conclusões que nasçam da tabela. «Nenhum dos três oferece contrato de manutenção a escritórios pequenos» é uma conclusão. «O mercado é competitivo» não é, porque não vem de nenhum número recolhido.</li>
+          <li><span class="who">Gestor</span><span class="t">20 min</span>Escrever a frase de posicionamento no molde «Somos a escolha de [segmento] que quer [benefício], porque [prova]» e montar a Entrega 4 em duas páginas.</li>
+        </ol>
       </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 4</span><strong>Estudo de mercado curto (2 páginas)</strong></div>
@@ -395,6 +530,29 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           </table>
         </div>
       </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 10 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Aprovisionamento</span><span class="t">15 min</span>Criar a folha de cálculo Orcamento_EQUIPA com três separadores, exatamente com estes nomes e sem acentos: Pressupostos, Investimento, CustosFixos.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">30 min</span>No separador Pressupostos, uma linha por cada número que se repete no ficheiro: salário base (920,00), TSU (23,75 por cento), taxa de IVA (23 por cento), renda, horas de trabalho por dia, dias úteis do mês. Três colunas: designação, valor, fonte.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>No separador Investimento, copiar a tabela base desta página, apagar o que não se aplica ao vosso nicho e acrescentar o que falta. Criar uma coluna «fonte do preço» e preenchê-la com o endereço do site consultado e a data.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">15 min</span>Total do investimento com <b>=SOMA(intervalo)</b>. Regra absoluta do ano: nenhum número escrito dentro de uma fórmula.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>No separador CustosFixos, listar tudo o que se paga todos os meses. Os valores anuais (seguros, licenças) entram divididos por doze, com a divisão à vista: <b>=320/12</b> não serve; <b>=Pressupostos!$B$8/12</b> serve.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">20 min</span>Calcular a TSU por fórmula sobre o total dos salários brutos: <b>=B7*Pressupostos!$B$3</b>. Verificar que dá 437,00 para dois salários de 920,00. Se der outro valor, a referência está errada.</li>
+          <li><span class="who">Administrativo</span><span class="t">20 min</span>Formatar: euros com duas casas decimais, cabeçalhos a negrito, colunas largas o suficiente para não aparecerem cardinais em vez dos números.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 11 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">25 min</span>Calcular as horas faturáveis do mês: número de técnicos x horas por dia x dias úteis x taxa de ocupação. Exemplo: 2 x 8 x 20 x 0,60 = 192 horas. A taxa de ocupação existe porque ninguém fatura oito horas em oito horas de trabalho: há deslocações, orçamentos que não dão em nada e tempo de espera por peças.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">20 min</span>Preço mínimo da hora = total dos custos fixos a dividir pelas horas faturáveis. Com os custos fixos da tabela desta página (450,00 de renda + 1 840,00 de salários + 437,00 de TSU + 20,00 de licenças + 26,67 de seguros + 125,00 de eletricidade e comunicações = 2 898,67) e 192 horas, dá 15,10. Abaixo deste valor, a empresa perde dinheiro a trabalhar.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Acrescentar a margem pretendida e arredondar para cima até ao múltiplo de cinco. Escrever numa linha porque escolheram essa margem e como se compara com a média dos concorrentes da Entrega 4.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">30 min</span>Ponto crítico: margem média por serviço = preço médio do serviço menos custo das peças usadas. Número de serviços por mês = custos fixos a dividir pela margem média. Arredondar sempre para cima, porque meio serviço não existe.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Teste de esforço do ficheiro: mudar no separador Pressupostos a renda de 450 para 600 e verificar se todos os totais mexem sozinhos. Se algum não mexer, há um número escrito à mão nessa fórmula; procurar e corrigir. Repor os 450 no fim.</li>
+          <li><span class="who">Gestor</span><span class="t">25 min</span>Escrever a frase do financiamento: quanto entra de capital dos sócios, quanto de empréstimo e a que prazo. A soma tem de ser igual ou superior ao investimento inicial; se for inferior, a empresa abre sem dinheiro para abrir.</li>
+          <li><span class="who">Administrativo</span><span class="t">25 min</span>Entregar no formato original da folha de cálculo, não em PDF, para se verem as fórmulas. Nome: EQUIPA_P1_E05_orcamento.xlsx.</li>
+        </ol>
+      </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 5</span><strong>Orçamento de arranque em folha de cálculo</strong></div>
         <ul>
@@ -421,6 +579,20 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           <li>Ensaio com relógio antes da aula da apresentação.</li>
           <li>Duas perguntas obrigatórias de cada equipa que assiste.</li>
         </ul>
+      </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula única &middot; semana 12 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">25 min</span>Antes de abrir o computador, escrever à mão a frase-chave de cada um dos seis diapositivos: problema, solução, cliente, concorrência, números, equipa. Uma frase por diapositivo, nem mais uma.</li>
+          <li><span class="who">Comercial</span><span class="t">30 min</span>Montar os seis diapositivos com três regras: no máximo 20 palavras por diapositivo, letra de corpo 28 ou maior, um número grande ou um gráfico por diapositivo.</li>
+          <li><span class="who">Gestor</span><span class="t">15 min</span>Repartir quem fala: o Gestor abre com 30 segundos e fecha com 30 segundos; os restantes ficam com um ou dois diapositivos cada. Todos os sócios falam, sem exceção.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Primeiro ensaio com cronómetro. Anotar numa folha o tempo gasto em cada parte. Passar dos cinco minutos significa cortar conteúdo, não falar mais depressa.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Segundo ensaio, a olhar para a turma, com os diapositivos atrás das costas. Quem lê o diapositivo perde pontos no critério da comunicação.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Preparar três respostas curtas às perguntas mais prováveis: porque é esse o preço da hora; o que fazem se um concorrente baixar 20 por cento; como chegam aos primeiros dez clientes.</li>
+          <li><span class="who">Administrativo</span><span class="t">10 min</span>Exportar em PDF e entregar antes de começarem as apresentações. Nome: EQUIPA_P1_E06_pitch.pdf.</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Durante as apresentações das outras equipas, escrever duas perguntas por equipa, sendo uma obrigatoriamente sobre um número que ouviram. As perguntas são entregues no fim e contam para a nota.</li>
+        </ol>
       </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 6</span><strong>Pitch de 5 minutos</strong></div>
@@ -460,6 +632,28 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           <li>Quem emite cada documento em cada área funcional, e em que momento.</li>
         </ul>
       </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 13 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">15 min</span>Ler o caso: um escritório de contabilidade com oito postos pede proposta para substituir oito discos por SSD, com instalação e transferência de dados, e pergunta se há contrato de manutenção mensal.</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Em cartões, escrever a sequência de documentos que este negócio gera, do primeiro contacto ao recebimento. Um documento por cartão.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Escrever ao lado de cada cartão quem emite (empresa ou cliente) e o que acontece se esse documento não existir. Exemplo: sem guia de remessa, não se prova o que foi entregue nem quando.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Marcar os dois pontos onde o processo pode seguir por caminhos diferentes: o cliente aceita ou recusa a proposta; o cliente paga no prazo ou não paga.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>Escrever o que acontece em cada caminho alternativo, até ao fim: na recusa, arquivar a proposta e registar o motivo; na devolução de dois SSD com defeito, emitir nota de crédito e dar entrada do material em stock.</li>
+          <li><span class="who">Administrativo</span><span class="t">35 min</span>Passar a sequência para uma lista numerada no documento de trabalho, com três colunas: documento, quem emite, em que momento.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 14 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Administrativo</span><span class="t">15 min</span>Abrir diagrams.net, clicar em <i>More Shapes</i>, ativar a biblioteca <i>Flowchart</i> e gravar o ficheiro no Drive da equipa.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Fixar a legenda antes de desenhar seja o que for: oval é início e fim, retângulo é ação, losango é decisão, folha com base ondulada é documento emitido, seta é sentido do processo.</li>
+          <li><span class="who">Todos</span><span class="t">50 min</span>Desenhar o caminho principal de cima para baixo, do pedido do cliente ao recebimento, com o símbolo de documento ao lado de cada ação que o gera.</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Desenhar os dois ramos alternativos a partir dos losangos, cada saída rotulada com «sim» ou «não», e levá-los até um símbolo de fim. Nenhuma seta pode ficar solta no ar.</li>
+          <li><span class="who">Administrativo</span><span class="t">20 min</span>Acrescentar a legenda dos símbolos num canto e o título com o nome da empresa e a data.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Prova do fluxograma: o professor dá um caso novo (o cliente aceita mas pede para adiar a entrega duas semanas) e a equipa percorre o desenho com o dedo. Se ficar presa, falta um caminho; desenhar agora.</li>
+          <li><span class="who">Gestor</span><span class="t">15 min</span>Exportar em PDF e entregar como EQUIPA_P2_E07_fluxograma.pdf.</li>
+        </ol>
+      </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 7</span><strong>Fluxograma do ciclo comercial</strong></div>
         <ul>
@@ -488,6 +682,29 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
         </ul>
         <p>Exercício resolvido:</p>
         <div class="formula">Venda de 20 SSD a 45,00 = <b>900,00</b><br>IVA 23% = 900,00 x 0,23 = <b>207,00</b><br>Total a pagar pelo cliente = <b>1 107,00</b><br><br>Serviço ao domicílio 135,00 + IVA 31,05 = <b>166,05</b><br>Apuramento do dia: liquidado 238,05, dedutível 0,00, <b>a entregar 238,05</b></div>
+      </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 15 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Administrativo</span><span class="t">20 min</span>Copiar do Kit os elementos obrigatórios da fatura para uma lista de verificação, uma linha por elemento e uma caixa ao lado para marcar. Esta lista vai ser usada no passo 12.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">35 min</span>Construir o modelo de fatura numa folha de cálculo, com quatro blocos: emitente (nome, morada, NIF), cliente, número e data do documento, e tabela das linhas.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">30 min</span>Fórmulas da tabela de linhas, uma coluna cada: valor = quantidade x preço unitário; desconto = valor x percentagem; base = valor menos desconto; IVA = base x taxa; total da linha = base + IVA.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Testar o modelo com um caso conhecido: 20 SSD a 45,00 têm de dar 900,00 de base, 207,00 de IVA e 1 107,00 de total. Se der outro valor, o erro está na fórmula, não na calculadora.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">25 min</span>Bloco de totais: soma das bases, soma do IVA separada por taxa e total a pagar, tudo dentro de <b>ARRED(...;2)</b>.</li>
+          <li><span class="who">Administrativo</span><span class="t">25 min</span>Definir a série e a numeração: FT 2027/1, FT 2027/2, sem saltos e sem repetições. A nota de crédito leva série própria: NC 2027/1.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Formatar para impressão: uma fatura por página A4, sem colunas cortadas à direita. Imprimir para PDF e confirmar.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 16 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Comercial</span><span class="t">30 min</span>Emitir as duas faturas de venda de bens, com artigos e preços do vosso nicho e datas em dias diferentes.</li>
+          <li><span class="who">Comercial</span><span class="t">30 min</span>Emitir as duas faturas de prestação de serviços. Numa delas aplicar 10 por cento de desconto comercial, sempre antes do IVA: primeiro desconta-se, depois calcula-se o imposto.</li>
+          <li><span class="who">Comercial</span><span class="t">25 min</span>Emitir a nota de crédito sobre uma das faturas de bens, indicando no corpo o número e a data da fatura que corrige e o motivo da correção. Uma fatura nunca se apaga.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">30 min</span>Tabela de apuramento das cinco: coluna do IVA liquidado, coluna do IVA dedutível e diferença numa linha final, com as palavras «a entregar» ou «a recuperar».</li>
+          <li><span class="who">Administrativo</span><span class="t">35 min</span>Conferência cruzada: passar a lista de verificação do passo 1 por cada uma das cinco faturas e marcar o que falta. Quem confere não pode ser quem emitiu.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Corrigir tudo o que a conferência apanhou e voltar a exportar os documentos.</li>
+          <li><span class="who">Gestor</span><span class="t">10 min</span>Entregar dois ficheiros: o PDF das cinco faturas e a folha de cálculo original com as fórmulas à vista.</li>
+        </ol>
       </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 8</span><strong>Cinco faturas emitidas corretamente</strong></div>
@@ -520,6 +737,36 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
         <div class="formula">Entrada 1: 10 SSD x 45,00 = 450,00<br>Entrada 2: 5 SSD x 51,00 = 255,00<br>CMP = (450,00 + 255,00) / 15 = <b>47,00</b><br>Saída de 8 unidades: 8 x 47,00 = <b>376,00</b> de custo<br>Ficam 7 unidades valorizadas a 7 x 47,00 = <b>329,00</b></div>
         <div class="formula">Ponto de encomenda = (consumo médio diário x prazo de entrega) + stock de segurança<br>Exemplo: (2 x 5) + 6 = <b>16 unidades</b>. Quando o stock chega a 16, encomenda-se.</div>
       </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 17 &middot; 180 min &middot; ficha de artigo</p>
+        <ol class="pp">
+          <li><span class="who">Aprovisionamento</span><span class="t">30 min</span>Escolher 15 artigos do vosso nicho, com uma regra de mistura: pelo menos cinco abaixo de 30 euros, três acima de 150 euros e dois consumíveis usados em reparações, como pasta térmica ou cabos.</li>
+          <li><span class="who">Todos</span><span class="t">45 min</span>Recolher o preço de cada artigo em dois sites de revendedor. Registar marca, modelo exato, preço sem IVA e data da consulta. Modelos aproximados não servem: um SSD de 1 TB de marcas diferentes tem preços diferentes.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">25 min</span>Definir a regra de referência interna e aplicá-la aos 15 artigos. Exemplo: SSD-1TB-KGS para um SSD de 1 TB da Kingston. A referência é criada uma vez e nunca mais muda.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">40 min</span>Criar a folha Artigos com dez colunas: referência, designação, fornecedor, preço de custo, margem, PVP, stock atual, stock mínimo, ponto de encomenda e localização na oficina.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Definir a margem por família de artigos e calcular o PVP por fórmula: <b>=custo*(1+margem)</b>. Componentes e acessórios não levam a mesma margem, e a diferença tem de ser explicada numa linha.</li>
+          <li><span class="who">Administrativo</span><span class="t">15 min</span>Escrever o diário de bordo e arrumar os ficheiros na pasta da empresa, com o nome e a data.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 18 &middot; 180 min &middot; movimentos e custo médio</p>
+        <ol class="pp">
+          <li><span class="who">Aprovisionamento</span><span class="t">25 min</span>Criar a folha Movimentos com sete colunas: data, referência, tipo (E de entrada ou S de saída), quantidade, preço unitário, valor e documento de suporte.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">20 min</span>Lançar o stock inicial como entradas, com data de 1 de março e o documento «inventário inicial».</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Fórmula do stock atual, na folha Artigos: soma das entradas menos soma das saídas, com <b>=SOMA.SE(Movimentos!$B:$B;$A2;Movimentos!$D:$D)</b> filtrada pelo tipo. Conferir dois artigos à mão antes de continuar.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>Custo médio ponderado: coluna valor = quantidade x preço unitário; CMP = soma dos valores das entradas a dividir pela soma das quantidades das entradas. Verificar com o exemplo da aula: 10 unidades a 45,00 e 5 a 51,00 dão 47,00.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Registar uma saída de 8 unidades e confirmar dois números: o custo da saída é 8 x 47,00 = 376,00 e ficam 7 unidades valorizadas a 329,00.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">30 min</span>Criar a coluna do valor do inventário por artigo, <b>=stock atual x CMP</b>, e o total do armazém no fundo da folha.</li>
+        </ol>
+        <p class="sess-h">Aula 3 &middot; semana 19 &middot; 180 min &middot; alertas e inventário</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">30 min</span>Estimar o consumo médio diário de cada artigo a partir das vendas previstas no orçamento. Um artigo que se vende duas vezes por semana tem consumo diário de 0,4 unidades.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">30 min</span>Ponto de encomenda por artigo: (consumo médio diário x prazo de entrega do fornecedor) + stock de segurança. Com 2 por dia, 5 dias de prazo e 6 de segurança dá 16 unidades.</li>
+          <li><span class="who">Administrativo</span><span class="t">25 min</span>Formatação condicional na folha Artigos: fundo vermelho quando o stock atual for menor ou igual ao ponto de encomenda, amarelo quando estiver a menos de 20 por cento acima dele.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>Teste com dez movimentos inventados pela equipa, incluindo uma peça consumida numa reparação e uma quebra. Conferir três resultados com calculadora e anotar as diferenças.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Inventário físico simulado: o professor altera duas quantidades sem avisar quais. Encontrar as diferenças e registá-las como movimento de correção, com data e motivo. Não se apaga nem se reescreve nada.</li>
+          <li><span class="who">Gestor</span><span class="t">25 min</span>Entregar a folha de cálculo no formato original, com as duas folhas e os cálculos visíveis.</li>
+        </ol>
+      </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 9</span><strong>Base de stock em folha de cálculo</strong></div>
         <ul>
@@ -546,6 +793,36 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           <li>Efeito do prazo de pagamento na tesouraria: receber a pronto e pagar a 30 dias é dinheiro emprestado de graça.</li>
           <li>Fornecedor único contra fornecedor alternativo, e o risco de rutura.</li>
         </ul>
+      </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 20 &middot; 180 min &middot; pedir cotações</p>
+        <ol class="pp">
+          <li><span class="who">Aprovisionamento</span><span class="t">25 min</span>Escolher cinco artigos para cotar, com marca e modelo exatos. Cotar artigos diferentes em fornecedores diferentes não permite comparar nada, e é o erro mais comum nesta entrega.</li>
+          <li><span class="who">Comercial</span><span class="t">40 min</span>Escrever o correio eletrónico de pedido de cotação, com cinco partes: assunto claro, identificação (aluno, escola, trabalho escolar), tabela com referências e quantidades, perguntas sobre portes, prazo de entrega, condições de pagamento, garantia e devoluções, e agradecimento com prazo de resposta.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Identificar três fornecedores reais do mercado português e confirmar, no site de cada um, que vendem os cinco artigos escolhidos.</li>
+          <li><span class="who">Comercial</span><span class="t">25 min</span>Enviar os três correios com exatamente o mesmo texto e as mesmas quantidades, e guardar cópia de cada um na pasta da empresa.</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Enquanto não há resposta, recolher dos sites o que já estiver publicado: preço, portes e prazo de entrega. Registar sempre a data da recolha.</li>
+          <li><span class="who">Administrativo</span><span class="t">25 min</span>Criar a folha Fornecedores com nome, NIF quando estiver disponível, contacto, site, condições e data do último contacto.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 21 &middot; 180 min &middot; comparar a sério</p>
+        <ol class="pp">
+          <li><span class="who">Aprovisionamento</span><span class="t">35 min</span>Montar a tabela comparativa: linhas com os cinco artigos, colunas com os três fornecedores, e uma linha final com o subtotal da encomenda-tipo.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">25 min</span>Acrescentar a linha dos portes e calcular o custo total da encomenda. O fornecedor mais barato à unidade deixa muitas vezes de o ser quando entram os portes.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Traduzir as condições de pagamento em dias de tesouraria: pagar a 30 dias é ter o dinheiro do cliente durante 30 dias sem juros. Escrever quanto vale isso em euros na encomenda-tipo.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Registar a garantia e a política de devoluções de cada fornecedor, e o que acontece em concreto a um artigo com defeito ao fim de dois meses: quem paga os portes da devolução e em quantos dias há substituição.</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Grelha de pontuação com pesos: preço 50, prazo de entrega 20, condições de pagamento 15, garantia e devoluções 15. Pontuar cada fornecedor de 1 a 5 em cada critério e calcular a pontuação ponderada por fórmula.</li>
+          <li><span class="who">Administrativo</span><span class="t">25 min</span>Anotar, célula a célula, a fonte do valor: correio recebido, página do site ou telefone, com a data.</li>
+        </ol>
+        <p class="sess-h">Aula 3 &middot; semana 22 &middot; 180 min &middot; decidir e reajustar</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">30 min</span>Escolher o fornecedor. A escolha tem de coincidir com a pontuação; se a equipa escolher outro, tem de escrever a razão que a grelha não conseguiu medir.</li>
+          <li><span class="who">Gestor</span><span class="t">35 min</span>Escrever a justificação com três números obrigatórios: custo total da encomenda, diferença para o segundo classificado e prazo de entrega.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Plano B: escolher o fornecedor alternativo e escrever o que muda no preço e no prazo se o primeiro ficar sem stock a meio de uma reparação urgente.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">35 min</span>Atualizar a folha Artigos com o fornecedor escolhido e os preços de custo reais, e verificar se as margens do PVP se mantêm. Se o custo subiu, o PVP tem de ser revisto ou a margem encolhe sem ninguém dar por isso.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Verificar o efeito no orçamento da Entrega 5: se o stock inicial passou a custar mais, o investimento inicial muda e a folha tem de ser corrigida.</li>
+          <li><span class="who">Gestor</span><span class="t">25 min</span>Montar a Entrega 10 e gravar como EQUIPA_P2_E10_fornecedores.</li>
+        </ol>
       </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 10</span><strong>Mapa comparativo de três fornecedores</strong></div>
@@ -578,6 +855,36 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
         <p>Fórmulas de arranque, para adaptar aos vossos intervalos:</p>
         <div class="formula">Trazer o NIF do cliente escolhido:<br><b>=PROCV($B$4; Clientes!$A:$E; 3; FALSO)</b><br><br>Stock atual de um artigo:<br><b>=SOMA.SE(Movimentos!$B:$B; $A5; Movimentos!$D:$D) - SOMA.SE(Movimentos!$B:$B; $A5; Movimentos!$E:$E)</b><br><br>Aviso de encomenda:<br><b>=SE(F5&lt;=G5; "ENCOMENDAR"; "OK")</b><br><br>Linha da fatura com IVA:<br><b>=ARRED(C10*D10*(1+E10); 2)</b></div>
       </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 23 &middot; 180 min &middot; estrutura e listas</p>
+        <ol class="pp">
+          <li><span class="who">Aprovisionamento</span><span class="t">15 min</span>Criar o ficheiro SistemaGestao_EQUIPA com cinco folhas, com estes nomes exatos e sem acentos: Clientes, Artigos, Fornecedores, Movimentos, Fatura. Nomes diferentes partem as fórmulas dos passos seguintes.</li>
+          <li><span class="who">Comercial</span><span class="t">35 min</span>Folha Clientes, colunas A a E: código, nome, NIF, morada e condições de pagamento. Dez clientes, com pelo menos três empresas e um a pagar a 30 dias.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Trazer a folha Artigos da Entrega 9 para este ficheiro, sem perder as fórmulas do stock e do custo médio ponderado. Copiar e colar valores destrói o trabalho de três aulas.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Trazer a folha Fornecedores da Entrega 10, com as condições e os preços de custo já atualizados.</li>
+          <li><span class="who">Administrativo</span><span class="t">40 min</span>Criar nomes de intervalo para as listas: selecionar a coluna dos nomes de clientes e chamar-lhe lista_clientes; fazer o mesmo para lista_artigos. A partir daqui as fórmulas deixam de depender da linha exata.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>Validação de dados na folha Fatura: a célula do cliente recebe uma lista pendente a apontar para lista_clientes e a célula do artigo, em cada linha, aponta para lista_artigos. Escrever nomes à mão passa a ser impossível, que é exatamente o objetivo.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 24 &middot; 180 min &middot; a fatura que se preenche sozinha</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">30 min</span>Na folha Fatura, a célula B4 recebe o cliente pela lista; B5 traz o NIF com <b>=PROCV($B$4;Clientes!$A:$E;3;FALSO)</b> e B6 traz a morada, mudando apenas o número da coluna.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>Linhas 10 a 19 da fatura: coluna do artigo pela lista, designação e preço trazidos por PROCV à folha Artigos, quantidade escrita à mão, e as fórmulas de base, IVA e total por linha.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">30 min</span>Bloco de totais com SOMA dentro de ARRED: <b>=ARRED(SOMA(H10:H19);2)</b>. Conferir o resultado com uma fatura já feita na Entrega 8; os cêntimos têm de bater.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>Registo do movimento: cada linha da fatura gera uma linha na folha Movimentos com data, referência, tipo S, quantidade e número do documento. Se a folha de cálculo não permitir automatismo, define-se uma zona de cópia clara e escreve-se a instrução.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Verificar que o stock na folha Artigos desce quando se regista a venda e sobe quando se regista uma entrada. Testar com um artigo e confirmar o número antes e depois.</li>
+          <li><span class="who">Administrativo</span><span class="t">15 min</span>Gravar uma cópia de segurança com a data no nome antes de sair da aula. A partir daqui, todas as aulas acabam assim.</li>
+        </ol>
+        <p class="sess-h">Aula 3 &middot; semana 25 &middot; 180 min &middot; alertas, proteção e testes</p>
+        <ol class="pp">
+          <li><span class="who">Administrativo</span><span class="t">25 min</span>Formatação condicional na folha Artigos e coluna de aviso com <b>=SE(F5&lt;=G5;"ENCOMENDAR";"OK")</b>.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Proteger as células com fórmulas: selecionar as colunas calculadas, proteger o intervalo e deixar editáveis apenas as células de entrada de dados. O motor do ficheiro deixa de se apagar por engano.</li>
+          <li><span class="who">Todos</span><span class="t">50 min</span>Teste com dez operações inventadas pela equipa, incluindo uma venda a cliente a 30 dias, uma devolução e uma venda de um artigo que está abaixo do stock mínimo. Escrever numa folha tudo o que partir.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Corrigir os erros da lista e repetir o teste desde o princípio. Um erro corrigido pode partir outra coisa, por isso o teste repete-se todo.</li>
+          <li><span class="who">Gestor</span><span class="t">30 min</span>Escrever a folha de instruções de meia página: como se emite uma fatura em seis passos, onde não se mexe, e o que fazer quando aparece #N/D ou #REF!.</li>
+          <li><span class="who">Administrativo</span><span class="t">15 min</span>Entregar no formato original e guardar a cópia de segurança da versão entregue.</li>
+        </ol>
+      </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 11</span><strong>Sistema de gestão comercial funcional</strong></div>
         <ul>
@@ -606,6 +913,20 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           <li>Verificação cruzada: o Administrativo confere o registo feito pelo Comercial.</li>
         </ul>
         <p>A lista completa das vinte operações está no Kit, no fim desta página.</p>
+      </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula única &middot; semana 26 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Gestor</span><span class="t">10 min</span>Abrir a lista das vinte operações, no Kit, e mantê-la ao lado em papel ou noutro ecrã. Confirmar que o sistema da Entrega 11 abre sem mensagens de erro.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Primeira passagem, só de leitura: percorrer as vinte operações e escrever ao lado de cada uma o documento que ela gera (fatura, recibo, nota de crédito, guia, talão, folha de salários). Não se regista nada nesta fase.</li>
+          <li><span class="who">Comercial</span><span class="t">45 min</span>Registar as operações 1 a 10 por ordem de data, sem saltar nenhuma. A data do registo é a data da operação, nunca a data de hoje.</li>
+          <li><span class="who">Administrativo</span><span class="t">20 min</span>Conferência das dez primeiras: verificar que cada uma tem documento, valor e contraparte, e que o stock mexeu nas que envolvem artigos. Quem confere não é quem registou.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">45 min</span>Registar as operações 11 a 20. Atenção a duas: a 11 é uma devolução e faz o stock subir; na 7 só saem 2 000,00 do banco, o resto fica a dever.</li>
+          <li><span class="who">Administrativo</span><span class="t">15 min</span>Segunda conferência e correção do que aparecer, sem apagar registos: corrige-se com uma linha nova e uma nota.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">15 min</span>Mapa de tesouraria: saldo inicial, soma das entradas, soma das saídas e saldo final. Comparar com o saldo que o sistema mostra; se diferirem, falta uma operação registada.</li>
+          <li><span class="who">Todos</span><span class="t">10 min</span>Apuramento do IVA do mês e comparação com o valor de conferência do Kit: 592,71 de liquidado, 1 779,51 de dedutível, 1 186,80 a recuperar. Se não bater, procura-se a operação onde a diferença aparece, nunca se corrige o total à mão.</li>
+        </ol>
       </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 12</span><strong>Registo do mês de março</strong></div>
@@ -646,6 +967,27 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
         </ul>
         <p>As oito classes, com exemplos desta empresa, estão no Kit.</p>
       </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 27 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">25 min</span>Ler a tabela das oito classes, no Kit. Cada elemento fica responsável por duas classes e prepara-se para as explicar aos outros.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Explicação cruzada: cada pessoa tem um minuto por classe, sem ler nada. Quem ouve escreve a definição por palavras suas, e é essa versão que fica.</li>
+          <li><span class="who">Administrativo</span><span class="t">35 min</span>Montar a tabela do glossário com quatro colunas: classe, nome oficial, o que lá cabe em duas linhas, e dois exemplos tirados das vinte operações da vossa empresa.</li>
+          <li><span class="who">Todos</span><span class="t">45 min</span>Jogo de classificação: escrever vinte cartões, um por operação do mês simulado, e distribuí-los pelas oito classes em dez minutos. Repetir até não haver cartões em discussão.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Discutir os cartões que geraram desacordo e escrever a razão da decisão final. São estes que vão dar erro nos lançamentos das semanas seguintes.</li>
+          <li><span class="who">Gestor</span><span class="t">15 min</span>Escrever no diário de bordo as três dúvidas que ficaram por resolver, para as levantar na aula seguinte.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 28 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">35 min</span>Distinguir gasto de pagamento com quatro exemplos vossos: a fatura do fornecedor a 30 dias é gasto em março e pagamento em abril; o seguro anual pago em março é pagamento de uma vez e gasto repartido pelo ano.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Distinguir rendimento de recebimento com a operação 10, a venda a crédito de seis monitores: o rendimento é de março, o recebimento é de abril. Escrever as duas datas lado a lado.</li>
+          <li><span class="who">Administrativo</span><span class="t">35 min</span>Escolher uma conta concreta por classe, com código e designação oficiais: 11 Caixa, 21 Clientes, 31 Compras, 43 Ativos fixos tangíveis, 51 Capital, 62 Fornecimentos e serviços externos, 71 Vendas, 81 Resultado líquido do período.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>Escrever a explicação de cada classe por palavras próprias, no máximo duas linhas. Regra de correção: uma frase copiada do Kit ou de um site conta como não escrita.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Revisão a pares: cada elemento lê as classes escritas por outro e assinala a lápis o que não percebeu. O que não se percebe reescreve-se.</li>
+          <li><span class="who">Gestor</span><span class="t">15 min</span>Montar a Entrega 13 e gravar como EQUIPA_P3_E13_glossario.pdf.</li>
+        </ol>
+      </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 13</span><strong>Glossário das classes 1 a 8</strong></div>
         <ul>
@@ -683,6 +1025,35 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           </table>
         </div>
       </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula 1 &middot; semana 29 &middot; 180 min &middot; operações 1 a 7</p>
+        <ol class="pp">
+          <li><span class="who">Administrativo</span><span class="t">25 min</span>Criar a folha Diario com oito colunas: data, número do documento, tipo de documento, código da conta, designação da conta, descrição, débito e crédito.</li>
+          <li><span class="who">Administrativo</span><span class="t">15 min</span>Criar três células de controlo no topo: soma da coluna dos débitos, soma da coluna dos créditos e a diferença entre as duas. A diferença tem de voltar a zero no fim de cada lançamento.</li>
+          <li><span class="who">Todos</span><span class="t">40 min</span>Lançar em conjunto, com o professor, as operações 1 a 4. Regra prática a repetir em voz alta: debita-se o que entra na empresa ou o que ela gasta; credita-se o que sai, o que ela ganha e o que fica a dever.</li>
+          <li><span class="who">Todos</span><span class="t">45 min</span>Lançar as operações 5 a 7 aos pares. A 7 tem três contas: a viatura entra pelo valor total em ativos fixos tangíveis, saem 2 000,00 do banco e o resto fica em dívida.</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Conferir os sete lançamentos: cada um tem documento de suporte identificado e o débito igual ao crédito. Marcar a verde os que ficam fechados.</li>
+          <li><span class="who">Gestor</span><span class="t">20 min</span>Escrever as dúvidas que ficaram, com o número da operação ao lado, para as levantar na aula seguinte.</li>
+        </ol>
+        <p class="sess-h">Aula 2 &middot; semana 30 &middot; 180 min &middot; operações 8 a 17</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">40 min</span>Lançar as operações 8 a 11. Na 11, a nota de crédito faz exatamente o inverso da operação 2, incluindo a parte do IVA.</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Lançar as operações 12 a 14. Na 14 não há gasto nenhum: paga-se uma dívida que já estava registada, por isso o valor traz IVA incluído e nenhuma conta de gastos é tocada.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Lançar as operações 15 e 16. A 15 é a mesma lógica ao contrário: o rendimento foi registado em fevereiro, agora só entra dinheiro.</li>
+          <li><span class="who">Todos</span><span class="t">45 min</span>Lançar a operação 17, os salários, em três partes: o gasto pelo valor bruto (1 840,00), a retenção de IRS de 11 por cento e a TSU de 23,75 por cento a dever ao Estado e à Segurança Social, e o líquido que sai do banco.</li>
+          <li><span class="who">Administrativo</span><span class="t">30 min</span>Conferência das operações 8 a 17 por quem não as lançou. Escrever a lista de erros encontrados e não corrigir nada ainda: a correção é a primeira tarefa da aula seguinte.</li>
+        </ol>
+        <p class="sess-h">Aula 3 &middot; semana 31 &middot; 180 min &middot; fecho do diário</p>
+        <ol class="pp">
+          <li><span class="who">Todos</span><span class="t">30 min</span>Corrigir os erros apanhados na conferência anterior, um a um. Quando bastar acrescentar uma linha, não se apaga o lançamento original.</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Lançar as operações 18 e 19: a quebra de stock sai dos inventários para gastos; as comissões bancárias são gasto sem IVA, porque são operações isentas.</li>
+          <li><span class="who">Todos</span><span class="t">45 min</span>Lançar a operação 20, o apuramento do IVA: fechar o IVA liquidado contra o IVA dedutível dentro da conta 24 e deixar o saldo do lado certo. Com 592,71 e 1 779,51, a empresa fica com 1 186,80 a recuperar.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Verificação final: a diferença entre o total dos débitos e o total dos créditos tem de estar a zero. Se não estiver, criar uma coluna de soma acumulada e descer até à linha onde a diferença aparece.</li>
+          <li><span class="who">Gestor</span><span class="t">25 min</span>Escrever a nota das três operações mais difíceis: qual era a dúvida, o que decidiram e com que argumento.</li>
+          <li><span class="who">Administrativo</span><span class="t">15 min</span>Entregar a folha original com as colunas de controlo visíveis, para se ver que os totais batem.</li>
+        </ol>
+      </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 14</span><strong>Diário de lançamentos</strong></div>
         <ul>
@@ -711,6 +1082,19 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           <li>Três indicadores simples: margem sobre vendas, peso dos custos fixos, prazo médio de recebimento.</li>
         </ul>
       </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula única &middot; semana 32 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Administrativo</span><span class="t">20 min</span>Listar todas as contas usadas no diário, sem repetições e por ordem de código. Devem ser entre doze e vinte; menos do que isso é sinal de lançamentos em falta.</li>
+          <li><span class="who">Todos</span><span class="t">35 min</span>Criar a folha Razao e, por cada conta, somar os débitos e os créditos vindos do diário com SOMA.SE sobre o código da conta.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Calcular o saldo de cada conta e identificá-lo como devedor ou credor. As contas de gastos ficam devedoras, as de rendimentos ficam credoras; se estiver ao contrário, há um lançamento trocado.</li>
+          <li><span class="who">Aprovisionamento</span><span class="t">25 min</span>Montar o balancete com seis colunas: código, designação, total de débitos, total de créditos, saldo devedor e saldo credor. Os totais de baixo têm de ser iguais dois a dois.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Apurar o resultado: soma dos saldos da classe 7 menos soma dos saldos da classe 6. Escrever o valor e, ao lado, a palavra lucro ou prejuízo.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Calcular um indicador à escolha e comentá-lo numa linha: margem sobre vendas = (vendas menos custo das mercadorias vendidas) a dividir pelas vendas; peso dos custos fixos = custos fixos a dividir pelas vendas; prazo médio de recebimento = (saldo de clientes a dividir pelas vendas a crédito) x 30.</li>
+          <li><span class="who">Gestor</span><span class="t">30 min</span>Escrever as 150 palavras com esta estrutura fixa: deu lucro ou prejuízo e quanto; a causa principal, com um número a prová-la; uma causa secundária; duas coisas que mudariam no mês seguinte, com o efeito esperado em euros.</li>
+        </ol>
+      </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega 15</span><strong>Balancete e conclusão escrita</strong></div>
         <ul>
@@ -736,6 +1120,20 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
           <li>Relatório final de seis a oito páginas, com as quinze entregas em anexo.</li>
           <li>Entrega do dossiê completo da empresa, em papel ou PDF único.</li>
         </ul>
+      </details>
+      <details class="steps">
+        <summary>Passo a passo, aula a aula<span class="prog"></span></summary>
+        <p class="sess-h">Aula final &middot; semana 33 &middot; 180 min</p>
+        <ol class="pp">
+          <li><span class="who">Gestor</span><span class="t">20 min</span>Fixar o índice do relatório: capa, índice, a empresa, a organização, o mercado, o sistema de gestão, o mês de março, as contas, o que correu mal, conclusão e anexos.</li>
+          <li><span class="who">Todos</span><span class="t">25 min</span>Repartir a escrita por sócio, uma secção a cada um, com prazo interno de entrega três dias antes desta aula. Quem escreve uma secção não é quem a revê.</li>
+          <li><span class="who">Administrativo</span><span class="t">30 min</span>Prova de coerência: escolher cinco números-chave &mdash; investimento inicial, preço da hora, total de vendas de março, resultado do mês e valor do inventário a 31 &mdash; e confirmar que aparecem iguais no relatório e nas Entregas 5, 12 e 15. Um número diferente em dois sítios é o erro mais penalizado da defesa.</li>
+          <li><span class="who">Comercial</span><span class="t">30 min</span>Montar oito diapositivos, um por minuto: quem somos, o que vendemos, como corre um mês, os números, o erro que custou mais caro, o que fazíamos diferente, o que aprendemos, agradecimento.</li>
+          <li><span class="who">Todos</span><span class="t">30 min</span>Ensaio cronometrado a oito minutos. Cada sócio fala da parte que lhe coube nas rotações, não de uma parte qualquer: o júri pergunta sobre o que cada um fez.</li>
+          <li><span class="who">Todos</span><span class="t">20 min</span>Ensaio de perguntas: cada equipa prepara três perguntas para outra equipa, sendo uma obrigatoriamente sobre o resultado do mês.</li>
+          <li><span class="who">Administrativo</span><span class="t">15 min</span>Montar o dossiê em PDF único, com as quinze entregas por ordem, separadores identificados e paginação contínua.</li>
+          <li><span class="who">Todos</span><span class="t">10 min</span>Preencher e assinar a autoavaliação: o que fiz em cada rotação, o que entreguei a tempo, onde precisei de ajuda, quem me ajudou e o que faria melhor.</li>
+        </ol>
       </details>
       <div class="deliver">
         <div class="deliver-h"><span class="pill">Entrega final</span><strong>Relatório e defesa</strong></div>
@@ -991,6 +1389,79 @@ footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-sm
   var t=null;
   window.addEventListener('scroll',function(){ if(t)return; t=setTimeout(function(){t=null;mark();},120);},{passive:true});
   mark();
+
+  // ---- passo a passo: marcar, guardar, contar ----
+  var KEY='oficina33.passos.v1';
+  var saved={};
+  try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ saved={}; }
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){} }
+
+  Array.prototype.forEach.call(document.querySelectorAll('details.steps'),function(box,bi){
+    var items=box.querySelectorAll('ol.pp > li');
+    var prog=box.querySelector('.prog');
+    var boxes=[];
+
+    function refresh(){
+      var n=0;
+      boxes.forEach(function(c){ if(c.checked){n++;} });
+      if(prog){ prog.textContent=n+'/'+boxes.length; }
+    }
+
+    Array.prototype.forEach.call(items,function(li,li_i){
+      var id='b'+bi+'p'+li_i;
+      var c=document.createElement('input');
+      c.type='checkbox';
+      c.className='ck';
+      c.setAttribute('aria-label','passo '+(li_i+1)+' concluído');
+      c.checked=!!saved[id];
+      if(c.checked){ li.classList.add('done'); }
+      c.addEventListener('change',function(){
+        li.classList.toggle('done',c.checked);
+        if(c.checked){ saved[id]=1; } else { delete saved[id]; }
+        save(); refresh();
+      });
+      li.insertBefore(c,li.firstChild);
+      boxes.push(c);
+    });
+
+    var bar=document.createElement('p');
+    bar.className='pp-bar';
+    var b1=document.createElement('button');
+    b1.type='button'; b1.textContent='Limpar marcas desta secção';
+    b1.addEventListener('click',function(){
+      boxes.forEach(function(c){ if(c.checked){ c.checked=false; c.dispatchEvent(new Event('change')); } });
+    });
+    bar.appendChild(b1);
+    box.appendChild(bar);
+
+    refresh();
+  });
+
+  // ---- imprimir: abrir todas as gavetas e repor o estado no fim ----
+  var beforePrint=null;
+  function openAllDetails(){
+    if(beforePrint){ return; }
+    beforePrint=[];
+    Array.prototype.forEach.call(document.querySelectorAll('details'),function(d){
+      beforePrint.push(d.open);
+      d.open=true;
+    });
+  }
+  function restoreDetails(){
+    if(!beforePrint){ return; }
+    var state=beforePrint; beforePrint=null;
+    Array.prototype.forEach.call(document.querySelectorAll('details'),function(d,i){
+      if(i<state.length){ d.open=state[i]; }
+    });
+  }
+  window.addEventListener('beforeprint',openAllDetails);
+  window.addEventListener('afterprint',restoreDetails);
+  if(window.matchMedia){
+    var mqp=window.matchMedia('print');
+    var onp=function(e){ if(e.matches){ openAllDetails(); } else { restoreDetails(); } };
+    if(mqp.addEventListener){ mqp.addEventListener('change',onp); }
+    else if(mqp.addListener){ mqp.addListener(onp); }
+  }
 
   document.documentElement.style.scrollBehavior='smooth';
 })();
