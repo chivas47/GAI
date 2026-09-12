@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Oficina 33 | Montar uma microempresa de informática</title>
+<meta name="description" content="Guia de trabalho para alunos: criar e gerir uma microempresa de assistência técnica e venda de equipamento informático, ao longo de 33 semanas.">
+<meta name="theme-color" content="#EDEDE6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23EDEDE6'/><text y='74' x='12' font-size='68' font-family='monospace' font-weight='700' fill='%2316233A'>33</text></svg>">
+<style>
+:root{
+  --paper:#EDEDE6;
+  --paper-2:#F7F6F1;
+  --ink:#16233A;
+  --ink-soft:#46536B;
+  --rule:#C5C6BC;
+  --pen:#24409A;
+  --stamp:#B5322A;
+  --bar:#DCE8D5;
+  --p1:#F0CE3E;
+  --p2:#E9A7A7;
+  --p3:#9DC2DE;
+  --fs-body:19px;
+  --fs-small:17px;
+  --maxw:640px;
+  --sans:"Atkinson Hyperlegible","Trebuchet MS",Verdana,sans-serif;
+  --disp:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"Courier Prime","Courier New",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:var(--fs-body);
+  line-height:1.62;
+  padding-bottom:86px;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+.wrap{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 18px}
+h1,h2,h3,h4{font-family:var(--disp);line-height:1.12;letter-spacing:-.015em;margin:0}
+h2{font-size:31px;font-weight:700}
+h3{font-size:21px;font-weight:600}
+h4{font-size:19px;font-weight:600}
+p{margin:0 0 14px}
+a{color:var(--pen);text-underline-offset:3px}
+a:focus-visible,summary:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:7px}
+strong{font-weight:700}
+small{font-size:var(--fs-small)}
+
+/* ---------- folha de obra (hero) ---------- */
+.ticket{
+  background:var(--paper-2);
+  border:2px solid var(--ink);
+  border-bottom:none;
+  margin:16px 0 0;
+  padding:20px 18px 22px;
+  position:relative;
+}
+.ticket-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:20px}
+.ticket-ref{font-family:var(--mono);font-size:var(--fs-small);line-height:1.35}
+.ticket-ref b{display:block;font-size:20px}
+.seal{
+  border:2px solid var(--stamp);color:var(--stamp);font-family:var(--mono);font-weight:700;
+  font-size:var(--fs-small);padding:6px 9px;transform:rotate(-5deg);text-align:center;flex:none;
+  box-shadow:inset 0 0 0 1px var(--stamp);
+}
+.ticket h1{font-size:34px;font-weight:700;margin-bottom:14px}
+.ticket .lead{font-size:20px;margin-bottom:20px}
+.fields{border-top:1px dashed var(--rule);padding-top:16px}
+.field{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.field label{font-family:var(--mono);font-size:var(--fs-small);white-space:nowrap;color:var(--ink-soft)}
+.field input{
+  flex:1;min-width:0;font-family:var(--sans);font-size:var(--fs-body);color:var(--pen);
+  background:transparent;border:none;border-bottom:1.5px solid var(--ink);padding:2px 4px;
+}
+.field input::placeholder{color:#9A9C92}
+.tear{
+  height:22px;border:2px solid var(--ink);border-top:none;background:
+    radial-gradient(circle at 10px 0, transparent 5px, var(--paper-2) 5.5px) 0 0/20px 22px repeat-x;
+}
+.counts{display:flex;gap:0;margin:0 0 34px;border:2px solid var(--ink);border-top:none}
+.counts div{flex:1;padding:10px 8px;text-align:center;border-right:1px solid var(--rule);background:var(--paper-2)}
+.counts div:last-child{border-right:none}
+.counts b{display:block;font-family:var(--disp);font-size:24px;font-weight:700;line-height:1}
+.counts span{font-size:var(--fs-small);color:var(--ink-soft)}
+
+/* ---------- blocos gerais ---------- */
+.block{margin:0 0 40px}
+.block > h2{margin-bottom:12px}
+.note{background:var(--paper-2);border-left:5px solid var(--pen);padding:14px 16px;margin:0 0 18px}
+.note p:last-child{margin-bottom:0}
+.warn{border-left-color:var(--stamp)}
+
+.roles{display:grid;gap:12px;grid-template-columns:1fr}
+.role{border:1.5px solid var(--ink);background:var(--paper-2);padding:14px 16px}
+.role h4{margin-bottom:6px}
+.role p{margin:0;font-size:var(--fs-small)}
+
+/* ---------- separadores de período ---------- */
+.period{scroll-margin-top:12px;margin:0 0 44px}
+.tab{display:inline-block;font-family:var(--disp);font-weight:600;font-size:var(--fs-small);
+  padding:7px 14px;border:2px solid var(--ink);border-bottom:none;position:relative;top:2px;background:var(--p1)}
+.p2 .tab{background:var(--p2)}
+.p3 .tab{background:var(--p3)}
+.period-head{border:2px solid var(--ink);background:var(--paper-2);padding:18px 16px}
+.period-head h2{margin-bottom:8px}
+.period-head p:last-child{margin-bottom:0}
+.period-goal{font-family:var(--mono);font-size:var(--fs-small);color:var(--ink-soft);margin-bottom:10px}
+
+/* ---------- dockets semanais ---------- */
+.doc{margin-top:16px;background:var(--paper-2);border:1.5px solid var(--ink);
+  border-left:7px solid var(--p1);padding:16px 16px 4px}
+.p2 .doc{border-left-color:var(--p2)}
+.p3 .doc{border-left-color:var(--p3)}
+.doc-n{font-family:var(--mono);font-size:var(--fs-small);color:var(--ink-soft);display:block;margin-bottom:2px}
+.doc h3{margin-bottom:10px}
+.doc > p{font-size:var(--fs-body)}
+details{border-top:1px solid var(--rule);margin:0 -16px;padding:0 16px}
+summary{cursor:pointer;padding:12px 0;font-family:var(--disp);font-weight:600;font-size:var(--fs-small);
+  list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);font-size:22px;line-height:1;color:var(--pen)}
+details[open] summary::after{content:"\2212"}
+details > *:not(summary){font-size:var(--fs-small)}
+details[open]{padding-bottom:10px}
+.deliver{border-top:2px solid var(--ink);margin:0 -16px;padding:14px 16px 16px;background:#fff}
+.deliver-h{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.pill{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--stamp);border:1.5px solid var(--stamp);padding:2px 7px}
+.deliver strong{font-size:var(--fs-body)}
+.deliver ul{font-size:var(--fs-small);margin-bottom:10px}
+.tools{font-size:var(--fs-small);color:var(--ink-soft);margin:0}
+
+/* ---------- tabelas tipo documento ---------- */
+.tbl-wrap{overflow-x:auto;margin:0 0 16px;border:1.5px solid var(--ink);background:#fff}
+table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:var(--fs-small);min-width:380px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{background:var(--ink);color:var(--paper-2);font-weight:700;position:sticky;top:0}
+tbody tr:nth-child(odd){background:var(--bar)}
+td b{font-weight:700}
+.num{text-align:right;white-space:nowrap}
+
+.kit-sec{border:1.5px solid var(--ink);background:var(--paper-2);margin-bottom:12px}
+.kit-sec > summary{padding:14px 16px;font-size:var(--fs-body);border-top:none}
+.kit-sec > div{padding:0 16px 14px}
+.kit-sec{padding:0;margin-left:0;margin-right:0}
+.formula{font-family:var(--mono);font-size:var(--fs-small);background:#fff;border:1.5px dashed var(--ink);padding:12px 14px;margin:0 0 14px;overflow-x:auto}
+.formula b{color:var(--pen)}
+
+/* ---------- navegação ---------- */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:9;background:var(--paper-2);
+  border-top:2px solid var(--ink);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+.nav a{flex:1;text-align:center;padding:14px 4px;font-family:var(--disp);font-weight:600;
+  font-size:var(--fs-small);color:var(--ink);text-decoration:none;border-right:1px solid var(--rule)}
+.nav a:last-child{border-right:none}
+.nav a[aria-current="true"]{background:var(--ink);color:var(--paper-2)}
+footer{border-top:2px solid var(--ink);padding:22px 0 30px;font-size:var(--fs-small);color:var(--ink-soft)}
+
+@media (min-width:720px){
+  :root{--maxw:760px;--fs-body:20px;--fs-small:18px}
+  .ticket h1{font-size:46px}
+  h2{font-size:36px}
+  .roles{grid-template-columns:1fr 1fr}
+  body{padding-bottom:0}
+  .nav{position:sticky;top:0;bottom:auto;border-top:none;border-bottom:2px solid var(--ink);max-width:760px;margin:0 auto}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto !important;transition:none !important}}
+@media print{
+  body{background:#fff;padding:0;font-size:12pt}
+  body::before,.nav,.tear{display:none}
+  details{display:block}
+  details > *:not(summary){display:block !important}
+  summary::after{content:""}
+  .doc,.ticket,.period-head,.kit-sec{break-inside:avoid;background:#fff}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Secções">
+  <a href="#p1">1.º P</a>
+  <a href="#p2">2.º P</a>
+  <a href="#p3">3.º P</a>
+  <a href="#kit">Kit</a>
+</nav>
+
+<div class="wrap">
+
+  <header class="ticket">
+    <div class="ticket-top">
+      <span class="ticket-ref">Folha de obra<b>FO 2026/33</b>ano letivo 2026/2027</span>
+      <span class="seal">projeto<br>de ano</span>
+    </div>
+    <h1>Montar uma empresa de informática em 33 semanas</h1>
+    <p class="lead">Cada equipa abre uma microempresa de assistência técnica e venda de equipamento informático. Vende componentes, faz reparações ao domicílio e assina contratos de manutenção com pequenos escritórios. No fim do ano, tem de saber dizer se deu lucro.</p>
+    <div class="fields">
+      <div class="field"><label for="f-nome">Empresa</label><input id="f-nome" type="text" placeholder="escreve o nome aqui" autocomplete="off"></div>
+      <div class="field"><label for="f-equipa">Equipa</label><input id="f-equipa" type="text" placeholder="nomes dos 3 ou 4 sócios" autocomplete="off"></div>
+    </div>
+  </header>
+  <div class="tear" aria-hidden="true"></div>
+  <div class="counts">
+    <div><b>99</b><span>horas</span></div>
+    <div><b>33</b><span>semanas</span></div>
+    <div><b>16</b><span>entregas</span></div>
+  </div>
+
+  <section class="block">
+    <h2>Como isto funciona</h2>
+    <p>O ano está dividido em três blocos. Cada bloco fecha com uma entrega que fica no dossiê da empresa. Nada se deita fora: o orçamento do 1.º período alimenta as compras do 2.º, e as operações do 2.º período são exatamente as que vais lançar na contabilidade do 3.º.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Período</th><th>Horas</th><th>Sai daqui com</th></tr></thead>
+        <tbody>
+          <tr><td>1.º (set a dez)</td><td class="num">36</td><td>A empresa existe no papel: forma jurídica, funções, mercado, orçamento</td></tr>
+          <tr><td>2.º (jan a abr)</td><td class="num">40</td><td>A empresa funciona: faturas, stock, fornecedores, um mês de atividade real simulada</td></tr>
+          <tr><td>3.º (abr a jun)</td><td class="num">23</td><td>A empresa presta contas: lançamentos, balancete, resultado</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin:24px 0 10px">Os quatro papéis</h3>
+    <p>Ninguém faz o ano inteiro no mesmo papel. A rotação acontece quatro vezes, não três: o 2.º período é longo e parte-se ao meio (semanas 13 a 19 e 20 a 26). Assim, numa equipa de quatro, cada pessoa passa por todos os lugares.</p>
+    <div class="roles">
+      <div class="role"><h4>Gestor</h4><p>Coordena o plano de trabalho, controla prazos, reporta ao professor no fim de cada aula e assina as entregas.</p></div>
+      <div class="role"><h4>Comercial</h4><p>Fala com os clientes, faz propostas, emite as faturas e persegue os recebimentos.</p></div>
+      <div class="role"><h4>Aprovisionamento</h4><p>Trata do stock, pede cotações a fornecedores, lança entradas e saídas, avisa quando um artigo chega ao ponto de encomenda.</p></div>
+      <div class="role"><h4>Administrativo</h4><p>Arquiva documentos, verifica se cada operação tem papel que a prove, prepara a contabilidade.</p></div>
+    </div>
+    <div class="note" style="margin-top:16px">
+      <p><strong>Equipas de três:</strong> o Gestor acumula o papel Administrativo, mas o dossiê de documentos é verificado pelos três em conjunto na última aula de cada mês. Nenhuma equipa entrega contabilidade feita por uma pessoa só.</p>
+    </div>
+    <div class="note warn">
+      <p><strong>Rotina de dez minutos, todas as aulas:</strong> no fim da sessão, o Gestor escreve três linhas no diário de bordo (o que se fez, o que ficou por fazer, quem faz a seguir) e o Administrativo etiqueta os documentos do dia com a classe de contas a que pertencem. São dez minutos que poupam o 3.º período inteiro.</p>
+    </div>
+  </section>
+
+  <!-- ============== PERÍODO 1 ============== -->
+  <section class="period p1" id="p1">
+    <span class="tab">1.º período</span>
+    <div class="period-head">
+      <h2>A empresa no papel</h2>
+      <p class="period-goal">setembro a dezembro / 36 horas / semanas 1 a 12</p>
+      <p>Ainda não se vende nada. Decide-se o que a empresa é, a quem vende, quanto custa abri-la e quem faz o quê lá dentro. Quem despacha esta parte depressa paga caro em janeiro.</p>
+    </div>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 1 e 2</span>
+      <h3>Arranque, equipas e nicho</h3>
+      <p>Uma empresa que faz tudo para toda a gente não se distingue de nenhuma. O primeiro trabalho é estreitar: que tipo de cliente, que tipo de avaria, que zona da cidade.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>O que é uma microempresa: até 10 trabalhadores e volume de negócios anual até 2 milhões de euros.</li>
+          <li>Nicho contra mercado geral. Exemplos: só portáteis, só escritórios até dez postos, só recuperação de dados, só escolas e explicadores.</li>
+          <li>Escolha do nome: três hipóteses por equipa, verificadas no portal da Empresa na Hora (lista de firmas pré-aprovadas) ou pedido de certificado de admissibilidade ao RNPC.</li>
+          <li>Atribuição dos quatro papéis e calendário das quatro rotações.</li>
+          <li>Contrato de equipa: o que acontece se alguém faltar à entrega, como se decide quando há empate.</li>
+        </ul>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 1</span><strong>Ficha de identidade da empresa</strong></div>
+        <ul>
+          <li>Nome escolhido, mais as duas hipóteses rejeitadas e o motivo.</li>
+          <li>Nicho numa frase: "reparamos [o quê] para [quem] em [onde]".</li>
+          <li>Logótipo provisório e lema.</li>
+          <li>Sócios, com papel inicial e papel de cada rotação.</li>
+          <li>Morada da sede (uma morada real de Lisboa serve como exercício).</li>
+        </ul>
+        <p class="tools">Ferramentas: Documentos ou Word, Canva para o logótipo.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 3 e 4</span>
+      <h3>Forma jurídica, CAE e Empresa na Hora</h3>
+      <p>Três sócios podem abrir a empresa de várias maneiras, e a escolha muda quem paga as dívidas se a coisa correr mal. É a primeira decisão com consequências.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Empresário em Nome Individual: sem capital mínimo, mas o património pessoal responde pelas dívidas. Tributado em IRS.</li>
+          <li>Sociedade Unipessoal por Quotas: um sócio único, responsabilidade limitada ao capital, tributada em IRC.</li>
+          <li>Sociedade por Quotas (Lda): dois ou mais sócios, capital social mínimo de 1 euro por sócio, responsabilidade limitada, IRC.</li>
+          <li>Pacto social: o que é, para que serve, o que diz sobre a entrada e saída de sócios.</li>
+          <li>CAE, o código que diz ao Estado o que a empresa faz. Consulta obrigatória no SICAE, porque os códigos mudaram com a revisão 4, em vigor desde janeiro de 2025.</li>
+          <li>Empresa na Hora: passos, documentos e custo. Balcão presencial 360 euros, online com pacto pré-aprovado 220 euros, 300 euros no caso de empresas de inovação tecnológica ou investigação. Verifica os valores no portal antes de os escreveres.</li>
+        </ul>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 2</span><strong>Decisão fundamentada da forma jurídica</strong></div>
+        <ul>
+          <li>Tabela a comparar ENI, Unipessoal e Lda em quatro critérios: capital, responsabilidade, imposto, número de sócios.</li>
+          <li>Escolha da equipa e meia página a justificar, com referência ao risco do negócio.</li>
+          <li>CAE principal e um secundário, com código e designação copiados do SICAE.</li>
+          <li>Custo total estimado da constituição, com a via escolhida.</li>
+        </ul>
+        <p class="tools">Ferramentas: sicae.pt, empresanahora.justica.gov.pt, Documentos.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 5 a 7</span>
+      <h3>Áreas funcionais e organograma</h3>
+      <p>Cinco áreas, quatro pessoas. A parte difícil não é desenhar caixas, é dizer o que cada caixa faz quando entra um cliente à porta com um portátil que não liga.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li><b>Comercial:</b> atendimento, orçamentos, faturação, pós-venda.</li>
+          <li><b>Técnica:</b> diagnóstico, reparação, folha de obra, testes, garantia.</li>
+          <li><b>Aprovisionamento:</b> compras, fornecedores, stock, inventário.</li>
+          <li><b>Administrativa:</b> arquivo, documentos legais, correspondência.</li>
+          <li><b>Financeira:</b> tesouraria, pagamentos, recebimentos, contabilidade.</li>
+          <li>Organograma: hierarquia, dependências, quem substitui quem nas férias.</li>
+          <li>Percurso de um cliente pela empresa, área a área, do primeiro contacto à fatura paga.</li>
+        </ul>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 3</span><strong>Organograma com funções descritas</strong></div>
+        <ul>
+          <li>Diagrama com as cinco áreas e as ligações entre elas.</li>
+          <li>Três tarefas concretas por área, escritas com verbo de ação.</li>
+          <li>Mapa que liga cada área aos quatro papéis da equipa.</li>
+          <li>Percurso de um cliente, em seis passos, com a área responsável por cada passo.</li>
+        </ul>
+        <p class="tools">Ferramentas: Desenhos do Google, diagrams.net, Canva.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 8 e 9</span>
+      <h3>Missão, clientes e concorrência real</h3>
+      <p>Três concorrentes verdadeiros, em Lisboa, com preços recolhidos por vocês. Nada de inventar valores: telefona, entra no site, pergunta quanto custa substituir um ecrã.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Missão (o que fazemos hoje), visão (onde queremos estar daqui a três anos), valores (como trabalhamos).</li>
+          <li>Segmentos de cliente: particular, escritório de 5 a 10 postos, comércio local, escola. Cada um compra de maneira diferente.</li>
+          <li>Critérios de comparação: preço da mão de obra por hora, custo da deslocação, prazo de reparação, garantia dada, existência de contrato de manutenção.</li>
+          <li>Recolha de dados: site, telefone, visita, redes sociais.</li>
+          <li>Posicionamento: mais barato, mais rápido ou mais especializado. Escolher um.</li>
+        </ul>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 4</span><strong>Estudo de mercado curto (2 páginas)</strong></div>
+        <ul>
+          <li>Missão e visão, duas frases cada.</li>
+          <li>Dois segmentos de cliente descritos: o que precisam, quanto pagam, onde estão.</li>
+          <li>Tabela com três concorrentes reais e os cinco critérios, com a data e a fonte de cada preço.</li>
+          <li>Duas conclusões e a frase de posicionamento da empresa.</li>
+        </ul>
+        <p class="tools">Ferramentas: Folhas de cálculo, Formulários se fizerem inquérito.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 10 e 11</span>
+      <h3>Orçamento de arranque</h3>
+      <p>Aqui percebe-se porque é que muita empresa fecha no primeiro ano: o dinheiro sai todo antes de entrar o primeiro. Separa o que se gasta uma vez do que se paga todos os meses.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Investimento inicial (paga-se uma vez) contra custos fixos mensais (pagam-se sempre) e custos variáveis (dependem das vendas).</li>
+          <li>Um salário não custa o salário: em 2026 a retribuição mínima mensal garantida no continente é de 920 euros, e a empresa paga ainda 23,75 por cento de Taxa Social Única sobre o valor bruto.</li>
+          <li>Cálculo do preço da hora de mão de obra a partir dos custos fixos e das horas faturáveis do mês.</li>
+          <li>Ponto crítico simples: quantos serviços por mês são precisos para pagar os custos fixos.</li>
+          <li>Estrutura da folha de cálculo: uma coluna de valores, nenhum número escrito dentro das fórmulas.</li>
+        </ul>
+        <p>Base de partida, a adaptar ao vosso nicho:</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Rubrica</th><th class="num">Valor</th><th>Tipo</th></tr></thead>
+            <tbody>
+              <tr><td>Constituição da empresa</td><td class="num">360,00</td><td>investimento</td></tr>
+              <tr><td>Caução e primeira renda da oficina</td><td class="num">900,00</td><td>investimento</td></tr>
+              <tr><td>Equipamento de oficina e ferramentas</td><td class="num">2 500,00</td><td>investimento</td></tr>
+              <tr><td>Stock inicial de componentes</td><td class="num">3 000,00</td><td>investimento</td></tr>
+              <tr><td>Viatura ligeira usada</td><td class="num">6 500,00</td><td>investimento</td></tr>
+              <tr><td>Renda mensal da oficina</td><td class="num">450,00</td><td>fixo</td></tr>
+              <tr><td>Dois salários (920,00 cada)</td><td class="num">1 840,00</td><td>fixo</td></tr>
+              <tr><td>TSU da empresa, 23,75 por cento</td><td class="num">437,00</td><td>fixo</td></tr>
+              <tr><td>Licenças de software e faturação (por ano)</td><td class="num">240,00</td><td>fixo</td></tr>
+              <tr><td>Seguros (por ano)</td><td class="num">320,00</td><td>fixo</td></tr>
+              <tr><td>Eletricidade e comunicações</td><td class="num">125,00</td><td>fixo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 5</span><strong>Orçamento de arranque em folha de cálculo</strong></div>
+        <ul>
+          <li>Duas tabelas separadas: investimento inicial e custos fixos mensais.</li>
+          <li>Totais por fórmula, nunca escritos à mão.</li>
+          <li>Preço da hora de mão de obra calculado e justificado numa linha.</li>
+          <li>Número de serviços por mês necessários para cobrir os custos fixos.</li>
+          <li>Uma frase: de onde vem o dinheiro do arranque (capital dos sócios, empréstimo, as duas coisas).</li>
+        </ul>
+        <p class="tools">Ferramentas: Folhas de cálculo ou Excel.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semana 12</span>
+      <h3>Apresentação pública à turma</h3>
+      <p>Cinco minutos, cronometrados. Passa do tempo e é cortado a meio da frase, como acontece nos concursos a sério.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Estrutura em seis diapositivos: problema, solução, cliente, concorrência, números, equipa.</li>
+          <li>Regra de um argumento por diapositivo. Números grandes, texto pouco.</li>
+          <li>Quem fala: todos os sócios dizem alguma coisa, o Gestor abre e fecha.</li>
+          <li>Ensaio com relógio antes da aula da apresentação.</li>
+          <li>Duas perguntas obrigatórias de cada equipa que assiste.</li>
+        </ul>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 6</span><strong>Pitch de 5 minutos</strong></div>
+        <ul>
+          <li>Seis diapositivos, entregues em PDF antes da aula.</li>
+          <li>Todos os sócios intervêm.</li>
+          <li>Números do orçamento citados corretamente na apresentação.</li>
+          <li>Respostas às perguntas das outras equipas.</li>
+        </ul>
+        <p class="tools">Ferramentas: Apresentações, Canva ou Sites.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============== PERÍODO 2 ============== -->
+  <section class="period p2" id="p2">
+    <span class="tab">2.º período</span>
+    <div class="period-head">
+      <h2>A empresa a funcionar</h2>
+      <p class="period-goal">janeiro a abril / 40 horas / semanas 13 a 26</p>
+      <p>Agora vende-se, compra-se e regista-se. No fim, um mês inteiro de atividade com vinte operações reais entregues pelo professor. Esse mês é a matéria-prima do 3.º período, por isso um erro aqui aparece lá.</p>
+    </div>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 13 e 14</span>
+      <h3>O ciclo comercial completo</h3>
+      <p>Entre o cliente pedir e a empresa receber o dinheiro há cinco ou seis documentos. Cada um existe por uma razão e cada um protege alguém.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Pedido de informação e orçamento ou proposta comercial (validade, condições, o que não está incluído).</li>
+          <li>Nota de encomenda: o cliente aceita, e a partir daqui há compromisso.</li>
+          <li>Guia de remessa ou guia de transporte: acompanha a mercadoria, comunicada à AT antes de o transporte começar.</li>
+          <li>Fatura: o documento que gera a dívida e o IVA.</li>
+          <li>Recibo: prova que o cliente pagou. Fatura-recibo junta os dois quando o pagamento é imediato.</li>
+          <li>Nota de crédito e nota de débito: corrigem uma fatura já emitida, porque uma fatura não se apaga.</li>
+          <li>Quem emite cada documento em cada área funcional, e em que momento.</li>
+        </ul>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 7</span><strong>Fluxograma do ciclo comercial</strong></div>
+        <ul>
+          <li>Do primeiro contacto ao recebimento, com os documentos no sítio certo.</li>
+          <li>Pelo menos dois pontos de decisão (o cliente aceita a proposta, o cliente paga no prazo).</li>
+          <li>Os dois caminhos alternativos desenhados até ao fim, incluindo a devolução com nota de crédito.</li>
+          <li>Símbolos corretos e legenda.</li>
+        </ul>
+        <p class="tools">Ferramentas: diagrams.net ou Desenhos do Google.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 15 e 16</span>
+      <h3>Documentos comerciais e IVA</h3>
+      <p>O IVA não é dinheiro da empresa: é dinheiro do Estado que passa pela empresa. Entender isto resolve metade da confusão do 3.º período.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Taxas no continente: normal 23 por cento, intermédia 13 por cento, reduzida 6 por cento. Equipamento informático e mão de obra de reparação ficam na taxa normal.</li>
+          <li>IVA liquidado: o que a empresa cobra ao cliente e deve ao Estado.</li>
+          <li>IVA dedutível: o que a empresa pagou aos fornecedores e pode descontar.</li>
+          <li>Apuramento: liquidado menos dedutível. Positivo, entrega-se ao Estado; negativo, fica a recuperar.</li>
+          <li>Elementos obrigatórios da fatura: identificação e NIF das duas partes, data, numeração sequencial, descrição, quantidade, preço unitário, taxa, valor do IVA, total, ATCUD e código QR.</li>
+          <li>Isenções que vão aparecer no mês simulado: seguros e serviços bancários não levam IVA.</li>
+        </ul>
+        <p>Exercício resolvido:</p>
+        <div class="formula">Venda de 20 SSD a 45,00 = <b>900,00</b><br>IVA 23% = 900,00 x 0,23 = <b>207,00</b><br>Total a pagar pelo cliente = <b>1 107,00</b><br><br>Serviço ao domicílio 135,00 + IVA 31,05 = <b>166,05</b><br>Apuramento do dia: liquidado 238,05, dedutível 0,00, <b>a entregar 238,05</b></div>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 8</span><strong>Cinco faturas emitidas corretamente</strong></div>
+        <ul>
+          <li>Duas de venda de bens, duas de prestação de serviços, uma nota de crédito.</li>
+          <li>Numeração sequencial sem saltos e datas coerentes.</li>
+          <li>Todos os elementos obrigatórios presentes.</li>
+          <li>Cálculo do IVA correto ao cêntimo, com arredondamento a duas casas.</li>
+          <li>Apuramento do IVA das cinco faturas numa linha final.</li>
+        </ul>
+        <p class="tools">Ferramentas: Folhas de cálculo, ou software de faturação gratuito em modo de demonstração.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 17 a 19</span>
+      <h3>Gestão de stocks</h3>
+      <p>Comprar o mesmo artigo a preços diferentes ao longo do mês é normal. A pergunta é: quanto vale o que está na prateleira, e a que custo sai quando se vende?</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Ficha de artigo: referência, designação, fornecedor, preço de custo, margem, PVP, stock atual, stock mínimo, localização na oficina.</li>
+          <li>Entradas (compras, devoluções de clientes) e saídas (vendas, consumo em reparações, quebras).</li>
+          <li>Custo médio ponderado: o custo de saída recalcula-se a cada entrada.</li>
+          <li>Ponto de encomenda e stock de segurança.</li>
+          <li>Inventário físico e diferenças entre o que o sistema diz e o que está na estante.</li>
+          <li>Rotação: um artigo parado meses é dinheiro preso.</li>
+        </ul>
+        <p>Custo médio ponderado, exercício resolvido:</p>
+        <div class="formula">Entrada 1: 10 SSD x 45,00 = 450,00<br>Entrada 2: 5 SSD x 51,00 = 255,00<br>CMP = (450,00 + 255,00) / 15 = <b>47,00</b><br>Saída de 8 unidades: 8 x 47,00 = <b>376,00</b> de custo<br>Ficam 7 unidades valorizadas a 7 x 47,00 = <b>329,00</b></div>
+        <div class="formula">Ponto de encomenda = (consumo médio diário x prazo de entrega) + stock de segurança<br>Exemplo: (2 x 5) + 6 = <b>16 unidades</b>. Quando o stock chega a 16, encomenda-se.</div>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 9</span><strong>Base de stock em folha de cálculo</strong></div>
+        <ul>
+          <li>Quinze artigos reais do vosso nicho, com preços de mercado consultados.</li>
+          <li>Ficha de artigo completa para cada um.</li>
+          <li>Folha de movimentos com entradas e saídas datadas.</li>
+          <li>Cálculo automático do stock atual e do custo médio ponderado.</li>
+          <li>Aviso visível quando um artigo atinge o ponto de encomenda.</li>
+        </ul>
+        <p class="tools">Ferramentas: Folhas de cálculo ou Excel.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 20 a 22</span>
+      <h3>Fornecedores e condições de compra</h3>
+      <p>O mais barato raramente é o mais barato. Portes, prazos de entrega e condições de pagamento mudam a conta toda.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Pedido de cotação: o mesmo pedido, com as mesmas referências, enviado a três fornecedores.</li>
+          <li>Critérios de comparação: preço unitário, portes, prazo de entrega, condições de pagamento (pronto pagamento, 30 dias, 60 dias), garantia, política de devoluções, existência de conta de revendedor.</li>
+          <li>Desconto comercial, desconto de quantidade e desconto de pronto pagamento.</li>
+          <li>Efeito do prazo de pagamento na tesouraria: receber a pronto e pagar a 30 dias é dinheiro emprestado de graça.</li>
+          <li>Fornecedor único contra fornecedor alternativo, e o risco de rutura.</li>
+        </ul>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 10</span><strong>Mapa comparativo de três fornecedores</strong></div>
+        <ul>
+          <li>Três fornecedores reais do mercado português.</li>
+          <li>Cinco artigos iguais cotados nos três.</li>
+          <li>Todos os critérios preenchidos, com data da consulta.</li>
+          <li>Escolha justificada, com o custo total e não só o preço da etiqueta.</li>
+          <li>Uma linha sobre o que fazem se o fornecedor escolhido ficar sem stock.</li>
+        </ul>
+        <p class="tools">Ferramentas: Folhas de cálculo, sites dos fornecedores, correio eletrónico.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 23 a 25</span>
+      <h3>Construir a aplicação de gestão</h3>
+      <p>Deixa de haver folhas soltas. Uma única folha de cálculo onde se escolhe o cliente numa lista, se escolhe o artigo noutra, e a fatura aparece feita com o stock já descontado.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Estrutura em cinco folhas: Clientes, Artigos, Fornecedores, Movimentos, Fatura.</li>
+          <li>Validação de dados para criar listas pendentes e impedir nomes escritos à mão.</li>
+          <li>PROCV ou PROCX para trazer dados de outra folha.</li>
+          <li>SE e SOMA.SE para stock e avisos.</li>
+          <li>Formatação condicional para marcar artigos abaixo do mínimo.</li>
+          <li>Proteção das células com fórmulas, para ninguém apagar o motor por engano.</li>
+          <li>Testes: dez operações inventadas por vocês antes de entregar, para ver o que parte.</li>
+        </ul>
+        <p>Fórmulas de arranque, para adaptar aos vossos intervalos:</p>
+        <div class="formula">Trazer o NIF do cliente escolhido:<br><b>=PROCV($B$4; Clientes!$A:$E; 3; FALSO)</b><br><br>Stock atual de um artigo:<br><b>=SOMA.SE(Movimentos!$B:$B; $A5; Movimentos!$D:$D) - SOMA.SE(Movimentos!$B:$B; $A5; Movimentos!$E:$E)</b><br><br>Aviso de encomenda:<br><b>=SE(F5&lt;=G5; "ENCOMENDAR"; "OK")</b><br><br>Linha da fatura com IVA:<br><b>=ARRED(C10*D10*(1+E10); 2)</b></div>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 11</span><strong>Sistema de gestão comercial funcional</strong></div>
+        <ul>
+          <li>As cinco folhas ligadas entre si, sem valores repetidos à mão.</li>
+          <li>Fatura que se preenche escolhendo cliente e artigos em listas.</li>
+          <li>Stock que desce sozinho quando se regista uma venda.</li>
+          <li>Totais, IVA e aviso de ponto de encomenda a funcionar.</li>
+          <li>Uma folha de instruções de meia página para quem nunca viu o ficheiro.</li>
+        </ul>
+        <p class="tools">Ferramentas: Folhas de cálculo ou Excel.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semana 26</span>
+      <h3>Simulação de um mês de atividade</h3>
+      <p>Março inteiro, vinte operações entregues pelo professor. A equipa regista tudo no sistema que construiu, e o que sair daqui é o que vai para a contabilidade.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Leitura da lista das vinte operações e identificação do documento que cada uma gera.</li>
+          <li>Registo por ordem de data, sem saltar nenhuma.</li>
+          <li>Atualização do stock e das contas de clientes e fornecedores.</li>
+          <li>Mapa de tesouraria: quanto entrou, quanto saiu, quanto sobrou.</li>
+          <li>Apuramento do IVA do mês.</li>
+          <li>Verificação cruzada: o Administrativo confere o registo feito pelo Comercial.</li>
+        </ul>
+        <p>A lista completa das vinte operações está no Kit, no fim desta página.</p>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 12</span><strong>Registo do mês de março</strong></div>
+        <ul>
+          <li>As vinte operações registadas e datadas.</li>
+          <li>Documento associado a cada operação, identificado pelo tipo.</li>
+          <li>Stock final e valor do inventário no dia 31.</li>
+          <li>Mapa de tesouraria do mês.</li>
+          <li>Apuramento do IVA, com o valor a entregar ou a recuperar.</li>
+        </ul>
+        <p class="tools">Ferramentas: o sistema da entrega 11.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============== PERÍODO 3 ============== -->
+  <section class="period p3" id="p3">
+    <span class="tab">3.º período</span>
+    <div class="period-head">
+      <h2>A empresa presta contas</h2>
+      <p class="period-goal">abril a junho / 23 horas / semanas 27 a 33</p>
+      <p>Este é o período mais curto e o mais exigente. Não se aprende contabilidade do zero em abril: aprende-se a arrumar aquilo que já se fez durante o ano. Se a etiquetagem dos dez minutos foi feita, metade do trabalho está pronta.</p>
+    </div>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 27 e 28</span>
+      <h3>SNC e o código de contas</h3>
+      <p>Todas as empresas portuguesas arrumam as contas pelas mesmas gavetas. São oito, numeradas de 1 a 8, e servem para que qualquer pessoa de fora consiga ler as contas de qualquer empresa.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>O que é o Sistema de Normalização Contabilística e porque existe: comparabilidade, fiscalidade, crédito bancário, transparência.</li>
+          <li>Quem está obrigado a ter contabilidade organizada e quem pode ficar pelo regime simplificado.</li>
+          <li>As oito classes do código de contas e a lógica de as numerar.</li>
+          <li>Diferença entre ativo (o que a empresa tem e a favorece), passivo (o que deve) e capital próprio (o que é dos sócios).</li>
+          <li>Gasto não é o mesmo que pagamento, e rendimento não é o mesmo que recebimento.</li>
+          <li>Onde encontrar o código de contas oficial e como se lê uma conta a três ou quatro dígitos.</li>
+        </ul>
+        <p>As oito classes, com exemplos desta empresa, estão no Kit.</p>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 13</span><strong>Glossário das classes 1 a 8</strong></div>
+        <ul>
+          <li>Cada classe explicada por palavras vossas, no máximo duas linhas.</li>
+          <li>Dois exemplos por classe, tirados das operações da vossa empresa.</li>
+          <li>Uma conta concreta indicada por classe, com o código e o nome.</li>
+        </ul>
+        <p class="tools">Ferramentas: Documentos, código de contas do SNC.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semanas 29 a 31</span>
+      <h3>Classificar e lançar as vinte operações</h3>
+      <p>Cada operação toca em pelo menos duas contas, e o total a débito tem de ser igual ao total a crédito. Sempre. Se não bate, há um erro, não uma exceção.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Regra prática: debita-se o que entra na empresa ou o que ela gasta; credita-se o que sai ou o que ela ganha e o que fica a dever.</li>
+          <li>O IVA nunca é gasto nem rendimento: vai sempre para a conta 24, Estado e outros entes públicos.</li>
+          <li>Venda com recebimento imediato contra venda a 30 dias: muda a conta debitada, não o rendimento.</li>
+          <li>Compra de mercadoria contra compra de equipamento: uma vai para inventários, outra para ativo fixo tangível.</li>
+          <li>Salários: o bruto é gasto, o líquido é o que sai da conta, a diferença fica a dever à Segurança Social e ao Estado.</li>
+          <li>Lançamento das vinte operações por ordem de data, com o documento de suporte identificado.</li>
+        </ul>
+        <p>Exercício resolvido, venda a dinheiro de dois portáteis por 840,00 mais IVA:</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Conta</th><th>Descrição</th><th class="num">Débito</th><th class="num">Crédito</th></tr></thead>
+            <tbody>
+              <tr><td>11</td><td>Caixa</td><td class="num">1 033,20</td><td class="num"></td></tr>
+              <tr><td>711</td><td>Vendas de mercadorias</td><td class="num"></td><td class="num">840,00</td></tr>
+              <tr><td>2433</td><td>IVA liquidado</td><td class="num"></td><td class="num">193,20</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 14</span><strong>Diário de lançamentos</strong></div>
+        <ul>
+          <li>As vinte operações lançadas, por ordem de data.</li>
+          <li>Contas corretas, com código e designação.</li>
+          <li>Débitos iguais a créditos em cada lançamento.</li>
+          <li>Documento de suporte indicado em cada linha.</li>
+          <li>Uma nota escrita nas três operações que a equipa achou mais difíceis, a explicar a dúvida.</li>
+        </ul>
+        <p class="tools">Ferramentas: Folhas de cálculo, modelo de diário fornecido.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semana 32</span>
+      <h3>Balancete e leitura do resultado</h3>
+      <p>A pergunta do ano: a empresa deu lucro? Responde-se comparando a classe 7 com a classe 6. Tudo o resto é arrumação.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Do diário para o razão: juntar todos os movimentos da mesma conta.</li>
+          <li>Balancete de verificação: soma dos débitos igual à soma dos créditos.</li>
+          <li>Apuramento do resultado: rendimentos da classe 7 menos gastos da classe 6.</li>
+          <li>Resultado positivo é lucro, negativo é prejuízo. O que acontece a cada um deles.</li>
+          <li>Porque é que ter lucro não é o mesmo que ter dinheiro na conta.</li>
+          <li>Três indicadores simples: margem sobre vendas, peso dos custos fixos, prazo médio de recebimento.</li>
+        </ul>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega 15</span><strong>Balancete e conclusão escrita</strong></div>
+        <ul>
+          <li>Balancete do mês com totais de débito e crédito iguais.</li>
+          <li>Resultado apurado e identificado como lucro ou prejuízo.</li>
+          <li>Texto de 150 palavras a responder: deu lucro, porquê, e o que mudariam no mês seguinte.</li>
+          <li>Um indicador calculado e comentado.</li>
+        </ul>
+        <p class="tools">Ferramentas: Folhas de cálculo.</p>
+      </div>
+    </article>
+
+    <article class="doc">
+      <span class="doc-n">Semana 33</span>
+      <h3>Um ano da empresa em oito minutos</h3>
+      <p>A defesa final. Não é repetir o pitch de dezembro: é mostrar o que aconteceu à empresa e o que aprenderam com o que correu mal.</p>
+      <details>
+        <summary>Conteúdos e passos da aula</summary>
+        <ul>
+          <li>Estrutura: quem somos, o que vendemos, como corre o mês, os números, o erro que nos custou mais caro, o que fazíamos diferente.</li>
+          <li>Oito minutos de apresentação, cinco de perguntas do júri.</li>
+          <li>Todos os sócios falam da parte que lhes coube em cada rotação.</li>
+          <li>Relatório final de seis a oito páginas, com as quinze entregas em anexo.</li>
+          <li>Entrega do dossiê completo da empresa, em papel ou PDF único.</li>
+        </ul>
+      </details>
+      <div class="deliver">
+        <div class="deliver-h"><span class="pill">Entrega final</span><strong>Relatório e defesa</strong></div>
+        <ul>
+          <li>Relatório com índice, corpo e anexos numerados.</li>
+          <li>Apresentação dentro dos oito minutos.</li>
+          <li>Números coerentes com as entregas anteriores.</li>
+          <li>Respostas às perguntas do júri.</li>
+          <li>Autoavaliação da equipa preenchida e assinada por todos.</li>
+        </ul>
+        <p class="tools">Ferramentas: Documentos, Apresentações, Sites.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============== KIT ============== -->
+  <section class="block" id="kit" style="scroll-margin-top:12px">
+    <h2>Kit de consulta</h2>
+    <p>Tudo o que vais precisar de procurar duas vezes durante o ano está aqui. Abre só o que precisares.</p>
+
+    <details class="kit-sec">
+      <summary>As vinte operações do mês simulado</summary>
+      <div>
+        <p>Mês de março, ano 1 da empresa. Todos os valores estão sem IVA, salvo indicação em contrário. A taxa aplicável é a de 23 por cento, exceto onde se indica isenção.</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>N.º</th><th>Data</th><th>Operação</th><th class="num">Valor</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>02/03</td><td>Sócios reforçam o capital, depósito na conta da empresa</td><td class="num">2 000,00</td></tr>
+              <tr><td>2</td><td>03/03</td><td>Compra a fornecedor de 20 SSD de 1 TB a 45,00, a 30 dias</td><td class="num">900,00</td></tr>
+              <tr><td>3</td><td>04/03</td><td>Pagamento da renda da oficina por transferência</td><td class="num">450,00</td></tr>
+              <tr><td>4</td><td>05/03</td><td>Venda a dinheiro de 2 portáteis recondicionados a 420,00</td><td class="num">840,00</td></tr>
+              <tr><td>5</td><td>06/03</td><td>Três assistências ao domicílio a 45,00, pagas por MB Way</td><td class="num">135,00</td></tr>
+              <tr><td>6</td><td>09/03</td><td>Compra de material de escritório, a dinheiro</td><td class="num">62,00</td></tr>
+              <tr><td>7</td><td>10/03</td><td>Compra de viatura ligeira de mercadorias usada, 2 000,00 de entrada e o resto a prestações</td><td class="num">6 500,00</td></tr>
+              <tr><td>8</td><td>11/03</td><td>Faturação dos contratos de manutenção a 3 escritórios, 120,00 cada, a 30 dias</td><td class="num">360,00</td></tr>
+              <tr><td>9</td><td>12/03</td><td>Seguro anual da viatura, isento de IVA</td><td class="num">320,00</td></tr>
+              <tr><td>10</td><td>13/03</td><td>Venda a crédito de 6 monitores a 180,00, a 30 dias</td><td class="num">1 080,00</td></tr>
+              <tr><td>11</td><td>16/03</td><td>Devolução ao fornecedor de 2 SSD com defeito, nota de crédito recebida</td><td class="num">90,00</td></tr>
+              <tr><td>12</td><td>17/03</td><td>Licenças de software de faturação e antivírus, 12 meses</td><td class="num">240,00</td></tr>
+              <tr><td>13</td><td>18/03</td><td>Recuperação de dados a cliente particular, 180,00 com 10 por cento de desconto comercial</td><td class="num">162,00</td></tr>
+              <tr><td>14</td><td>19/03</td><td>Pagamento ao fornecedor da fatura de fevereiro, valor total com IVA</td><td class="num">1 230,00</td></tr>
+              <tr><td>15</td><td>20/03</td><td>Recebimento de cliente referente a fatura de fevereiro</td><td class="num">980,00</td></tr>
+              <tr><td>16</td><td>23/03</td><td>Eletricidade 85,00 e comunicações 40,00</td><td class="num">125,00</td></tr>
+              <tr><td>17</td><td>25/03</td><td>Salários de 2 trabalhadores a 920,00, retenção de 11 por cento e TSU de 23,75 por cento</td><td class="num">1 840,00</td></tr>
+              <tr><td>18</td><td>26/03</td><td>Quebra de stock, uma fonte de alimentação danificada na oficina</td><td class="num">38,00</td></tr>
+              <tr><td>19</td><td>27/03</td><td>Comissões bancárias do mês, isentas de IVA</td><td class="num">12,50</td></tr>
+              <tr><td>20</td><td>31/03</td><td>Apuramento do IVA do mês</td><td class="num">a calcular</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Pistas de classificação</strong>, por operação, para o 3.º período: 1 toca nas classes 5 e 1; 2 nas classes 3, 2 e 2 do IVA; 3 nas classes 6 e 1; 4, 5, 8, 10 e 13 nas classes 1 ou 2, 7 e 2; 6, 9, 12 e 16 nas classes 6, 2 e 1; 7 nas classes 4, 2 e 1; 11 inverte a operação 2; 14 e 15 movimentam só as classes 1 e 2; 17 nas classes 6, 2 e 1; 18 nas classes 6 e 3; 19 nas classes 6 e 1; 20 fecha a conta 24.</p>
+        <div class="note">
+          <p><strong>Para conferir no fim:</strong> o IVA liquidado do mês é 592,71 e o IVA dedutível, já descontada a nota de crédito, é 1 779,51. A empresa fica com 1 186,80 a recuperar, porque comprou a viatura. Vale a pena discutir isto na aula: um mês pode ter IVA a recuperar e mesmo assim dar prejuízo.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="kit-sec">
+      <summary>Formas jurídicas, comparação rápida</summary>
+      <div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Critério</th><th>ENI</th><th>Unipessoal Lda</th><th>Lda</th></tr></thead>
+            <tbody>
+              <tr><td>Sócios</td><td>1</td><td>1</td><td>2 ou mais</td></tr>
+              <tr><td>Capital mínimo</td><td>não tem</td><td>1,00</td><td>1,00 por sócio</td></tr>
+              <tr><td>Responsabilidade</td><td>ilimitada, responde o património pessoal</td><td>limitada ao capital</td><td>limitada ao capital</td></tr>
+              <tr><td>Imposto</td><td>IRS</td><td>IRC</td><td>IRC</td></tr>
+              <tr><td>Contabilidade</td><td>simplificada ou organizada</td><td>organizada</td><td>organizada</td></tr>
+              <tr><td>Onde se cria</td><td>Finanças</td><td>Empresa na Hora ou online</td><td>Empresa na Hora ou online</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Custos indicativos da constituição: 360,00 no balcão presencial, 220,00 online com pacto social pré-aprovado, 300,00 para empresas de inovação tecnológica ou investigação. Confirmem sempre no portal antes de escrever o valor no orçamento, porque as tabelas mudam.</p>
+      </div>
+    </details>
+
+    <details class="kit-sec">
+      <summary>CAE, onde procurar</summary>
+      <div>
+        <p>O CAE identifica a atividade da empresa perante as Finanças e o INE. A revisão 4 está em vigor desde 1 de janeiro de 2025, por isso listas antigas encontradas na internet podem estar erradas. Procurem sempre no SICAE, em sicae.pt, e copiem o código e a designação tal como lá aparecem.</p>
+        <p>Pontos de partida para a vossa pesquisa, a confirmar no SICAE:</p>
+        <ul>
+          <li>Reparação de computadores e de equipamento periférico.</li>
+          <li>Comércio a retalho de computadores, unidades periféricas e programas informáticos, em estabelecimento especializado.</li>
+          <li>Atividades de consultoria em informática.</li>
+        </ul>
+        <p>A empresa pode ter um CAE principal e vários secundários. Escolham o principal em função de onde vem a maior parte do dinheiro: se faturam mais reparações do que vendas, o principal é a reparação.</p>
+      </div>
+    </details>
+
+    <details class="kit-sec">
+      <summary>Documentos comerciais, o que é cada um</summary>
+      <div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Documento</th><th>Quem emite</th><th>Para que serve</th></tr></thead>
+            <tbody>
+              <tr><td>Proposta ou orçamento</td><td>empresa</td><td>indica preço e condições, tem prazo de validade, não obriga o cliente</td></tr>
+              <tr><td>Nota de encomenda</td><td>cliente</td><td>aceitação formal da proposta, cria o compromisso</td></tr>
+              <tr><td>Guia de remessa</td><td>empresa</td><td>acompanha a mercadoria e prova o que foi entregue</td></tr>
+              <tr><td>Guia de transporte</td><td>empresa</td><td>documento de circulação, comunicado à AT antes do transporte</td></tr>
+              <tr><td>Fatura</td><td>empresa</td><td>cria a dívida do cliente e liquida o IVA</td></tr>
+              <tr><td>Fatura-recibo</td><td>empresa</td><td>fatura e prova de pagamento no mesmo documento</td></tr>
+              <tr><td>Recibo</td><td>empresa</td><td>prova que o cliente pagou</td></tr>
+              <tr><td>Nota de crédito</td><td>empresa</td><td>corrige para menos uma fatura já emitida, em devoluções e descontos</td></tr>
+              <tr><td>Nota de débito</td><td>empresa</td><td>corrige para mais, em juros de mora ou valores em falta</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="kit-sec">
+      <summary>IVA, o essencial</summary>
+      <div>
+        <p>Taxas em Portugal continental: normal 23 por cento, intermédia 13 por cento, reduzida 6 por cento. Nos Açores e na Madeira as taxas são mais baixas. Equipamento informático e mão de obra de reparação estão na taxa normal.</p>
+        <div class="formula">IVA liquidado = IVA cobrado nas vendas e serviços<br>IVA dedutível = IVA pago nas compras da empresa<br><br>Apuramento = liquidado - dedutível<br>Positivo: <b>a entregar ao Estado</b><br>Negativo: <b>a recuperar</b></div>
+        <p>Cuidados que costumam dar erro:</p>
+        <ul>
+          <li>O IVA não é receita da empresa nem gasto da empresa. É dinheiro em trânsito.</li>
+          <li>O desconto comercial aplica-se antes do IVA.</li>
+          <li>Seguros e serviços bancários são isentos, não levam IVA.</li>
+          <li>Arredondar sempre a duas casas decimais, e só no fim do cálculo.</li>
+          <li>A fatura de um fornecedor sem NIF da empresa não permite deduzir o IVA.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="kit-sec">
+      <summary>Stock: fórmulas e regras</summary>
+      <div>
+        <div class="formula">Custo médio ponderado = valor total em armazém / quantidade total em armazém<br>Recalcula-se a cada entrada, nunca a cada saída.<br><br>Ponto de encomenda = (consumo médio diário x prazo de entrega) + stock de segurança<br><br>Valor do inventário = quantidade em stock x custo médio ponderado</div>
+        <ul>
+          <li>Entradas: compras, devoluções de clientes, correções de inventário para mais.</li>
+          <li>Saídas: vendas, peças consumidas em reparações, quebras, ofertas.</li>
+          <li>Uma peça usada numa reparação sai do stock, mesmo que não tenha sido vendida à parte.</li>
+          <li>O inventário físico manda sobre o sistema. Se não bate, corrige-se o sistema e regista-se a diferença.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="kit-sec">
+      <summary>As oito classes do SNC</summary>
+      <div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Classe</th><th>Nome</th><th>Exemplo nesta empresa</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Meios financeiros líquidos</td><td>caixa da oficina, conta bancária da empresa</td></tr>
+              <tr><td>2</td><td>Contas a receber e a pagar</td><td>clientes com faturas a 30 dias, fornecedores, salários por pagar, IVA</td></tr>
+              <tr><td>3</td><td>Inventários</td><td>SSD, monitores e memórias em armazém</td></tr>
+              <tr><td>4</td><td>Investimentos</td><td>viatura da empresa, bancada e ferramentas da oficina</td></tr>
+              <tr><td>5</td><td>Capital e reservas</td><td>dinheiro posto pelos sócios no arranque</td></tr>
+              <tr><td>6</td><td>Gastos</td><td>renda, salários, eletricidade, custo das mercadorias vendidas</td></tr>
+              <tr><td>7</td><td>Rendimentos</td><td>venda de componentes, assistências, contratos de manutenção</td></tr>
+              <tr><td>8</td><td>Resultados</td><td>o lucro ou o prejuízo apurado no fim</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Contas que vão aparecer nos lançamentos: 11 Caixa, 12 Depósitos à ordem, 21 Clientes, 22 Fornecedores, 231 Remunerações a pagar, 24 Estado e outros entes públicos, 31 Compras, 32 Mercadorias, 43 Ativos fixos tangíveis, 51 Capital, 61 Custo das mercadorias vendidas, 62 Fornecimentos e serviços externos, 63 Gastos com o pessoal, 68 Outros gastos, 71 Vendas, 72 Prestações de serviços, 81 Resultado líquido do período.</p>
+      </div>
+    </details>
+
+    <details class="kit-sec">
+      <summary>Como são avaliadas as entregas</summary>
+      <div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Critério</th><th class="num">Peso</th><th>O que se procura</th></tr></thead>
+            <tbody>
+              <tr><td>Produto técnico</td><td class="num">40%</td><td>o documento, a folha de cálculo ou o lançamento funcionam e estão completos</td></tr>
+              <tr><td>Rigor comercial e contabilístico</td><td class="num">20%</td><td>valores certos, documentos corretos, IVA e contas sem erro</td></tr>
+              <tr><td>Papel e trabalho de equipa</td><td class="num">20%</td><td>cada um cumpriu o papel de cada rotação, o diário de bordo está preenchido</td></tr>
+              <tr><td>Comunicação</td><td class="num">20%</td><td>pitch, relatório e defesa claros, dentro do tempo e sem ler os diapositivos</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Níveis, na escala de 0 a 20:</p>
+        <ul>
+          <li><b>18 a 20:</b> a entrega funcionaria numa empresa real, com decisões justificadas e dados verificados na fonte.</li>
+          <li><b>14 a 17:</b> completa e correta, com uma ou outra justificação frouxa.</li>
+          <li><b>10 a 13:</b> cumpre o pedido mas tem erros de cálculo, dados inventados ou partes por acabar.</li>
+          <li><b>abaixo de 10:</b> falta material essencial ou o trabalho foi feito por uma parte da equipa apenas.</li>
+        </ul>
+        <p><strong>Autoavaliação de equipa</strong>, no fim de cada rotação, uma linha por pergunta: o que fiz no meu papel, o que entreguei a tempo, onde precisei de ajuda, quem me ajudou, o que faço melhor na próxima rotação.</p>
+      </div>
+    </details>
+
+    <details class="kit-sec">
+      <summary>Regras de entrega</summary>
+      <div>
+        <ul>
+          <li>Nome do ficheiro: <b>EQUIPA_P1_E02_decisao-juridica.pdf</b>. Equipa, período, número da entrega, assunto curto.</li>
+          <li>Formato: PDF, exceto folhas de cálculo, que se entregam no formato original para se ver as fórmulas.</li>
+          <li>Prazo: até ao fim da aula indicada. Entregas fora de prazo são avaliadas, com penalização registada no diário de bordo.</li>
+          <li>Toda a entrega leva na primeira página o nome da empresa, os sócios e o papel de cada um nessa rotação.</li>
+          <li>Dados retirados da internet levam sempre a fonte e a data da consulta.</li>
+          <li>Texto gerado por inteligência artificial sem revisão nem indicação é tratado como trabalho não feito. Usar a ferramenta é permitido, entregar o que ela escreveu sem perceber não é.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="kit-sec">
+      <summary>Glossário rápido</summary>
+      <div>
+        <ul>
+          <li><b>ATCUD:</b> código único de documento que identifica cada fatura perante a AT.</li>
+          <li><b>Capital social:</b> dinheiro ou bens que os sócios põem na empresa no início.</li>
+          <li><b>CAE:</b> código que classifica a atividade económica da empresa.</li>
+          <li><b>CMP:</b> custo médio ponderado, o valor a que cada unidade sai do armazém.</li>
+          <li><b>Custo fixo:</b> paga-se todos os meses, venda-se ou não.</li>
+          <li><b>Custo variável:</b> só existe quando há atividade, como as peças de uma reparação.</li>
+          <li><b>Débito e crédito:</b> os dois lados de qualquer lançamento, sempre iguais no total.</li>
+          <li><b>Gasto:</b> recurso consumido no período, mesmo que ainda não tenha sido pago.</li>
+          <li><b>IRC e IRS:</b> imposto sobre o lucro das sociedades e sobre o rendimento das pessoas.</li>
+          <li><b>Margem:</b> diferença entre o preço de venda e o custo do que se vendeu.</li>
+          <li><b>Ponto crítico:</b> volume de vendas a partir do qual a empresa deixa de perder dinheiro.</li>
+          <li><b>Prazo médio de recebimento:</b> quantos dias demora o dinheiro a chegar depois da fatura.</li>
+          <li><b>Rendimento:</b> valor ganho no período, mesmo que ainda não tenha sido recebido.</li>
+          <li><b>RMA:</b> processo de devolução de material com defeito ao fornecedor.</li>
+          <li><b>SNC:</b> Sistema de Normalização Contabilística, as regras das contas em Portugal.</li>
+          <li><b>Tesouraria:</b> o dinheiro disponível, entradas menos saídas.</li>
+          <li><b>TSU:</b> Taxa Social Única, a contribuição para a Segurança Social.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <footer>
+    <p>Oficina 33, guia de trabalho do projeto de microempresa. Os valores legais e fiscais indicados foram recolhidos em setembro de 2026 e devem ser confirmados nas fontes oficiais antes de serem usados em trabalho avaliado.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var nome=document.getElementById('f-nome');
+  var base=document.title;
+  function sync(){
+    var v=nome.value.trim();
+    document.title=v?v+' | Oficina 33':base;
+  }
+  nome.addEventListener('input',sync);
+
+  var links=Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function mark(){
+    var y=window.scrollY+window.innerHeight*0.35, at=-1;
+    secs.forEach(function(s,i){ if(s && s.offsetTop<=y){at=i;} });
+    links.forEach(function(a,i){ a.setAttribute('aria-current', i===at?'true':'false'); });
+  }
+  var t=null;
+  window.addEventListener('scroll',function(){ if(t)return; t=setTimeout(function(){t=null;mark();},120);},{passive:true});
+  mark();
+
+  document.documentElement.style.scrollBehavior='smooth';
+})();
+</script>
+</body>
+</html>
